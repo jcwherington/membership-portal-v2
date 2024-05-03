@@ -1,0 +1,534 @@
+swagger: "2.0"
+info:
+  version: "2.1.0"
+  title: "Membership API"
+schemes:
+  - "https"
+securityDefinitions:
+  apiKey:
+    type: apiKey
+    name: X-Api-Key
+    in: header
+paths:
+  /membership/{id}:
+    get:
+      summary: "Get membership"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "Membership ID"
+          required: true
+          type: "string"
+      responses:
+        '200':
+          description: "Successful response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+        '400':
+          description: "Invalid response"
+        '500':
+          description: "Error Response"
+      security:
+        - api_key: []
+      x-amazon-apigateway-integration:
+        type: aws_proxy
+        uri: 
+          Fn::Sub:
+            - arn:aws:apigateway:${AWSRegion}:lambda:path/2015-03-31/functions/${FunctionArn}/invocations
+            - AWSRegion:
+                Ref: AWS::Region
+              FunctionArn:
+                Fn::GetAtt: [MembershipApiLambda, Arn]
+        httpMethod: POST
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: when_no_templates
+    put:
+      summary: "Update membership"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Membership object to update"
+          required: true
+          schema:
+            $ref: "#/definitions/Membership"
+        - in: "path"
+          name: "id"
+          description: "Membership ID"
+          required: true
+          type: "string"
+      responses:
+        '200':
+          description: "Successful response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+        '400':
+          description: "Invalid response"
+        '500':
+          description: "Error Response"
+      security:
+        - api_key: []
+      x-amazon-apigateway-integration:
+        type: aws_proxy
+        uri: 
+          Fn::Sub:
+            - arn:aws:apigateway:${AWSRegion}:lambda:path/2015-03-31/functions/${FunctionArn}/invocations
+            - AWSRegion:
+                Ref: AWS::Region
+              FunctionArn:
+                Fn::GetAtt: [MembershipApiLambda, Arn]
+        httpMethod: POST
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: when_no_templates
+        requestTemplates:
+          application/json: |
+            #set($inputRoot = $input.json('$'))
+            {
+              "resource": "$context.resourcePath",
+              "httpMethod": "$context.httpMethod",
+              "headers": {
+                #foreach($header in $input.params().header.keySet())
+                  "$header": "$util.escapeJavaScript($input.params().header.get($header))"
+                  #if($foreach.hasNext),#end
+                #end
+              },
+              "pathParameters": {
+                #foreach($pathParam in $input.params().path.keySet())
+                  "$pathParam": "$util.escapeJavaScript($input.params().path.get($pathParam))"
+                  #if($foreach.hasNext),#end
+                #end
+              },
+              "body": $inputRoot,
+              "isBase64Encoded": false
+            }
+    delete:
+      summary: "Delete membership"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "Membership ID"
+          required: true
+          type: "string"
+      responses:
+        '200':
+          description: "Successful response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+        '400':
+          description: "Invalid response"
+        '500':
+          description: "Error Response"
+      security:
+        - api_key: []
+      x-amazon-apigateway-integration:
+        type: aws_proxy
+        uri: 
+          Fn::Sub:
+            - arn:aws:apigateway:${AWSRegion}:lambda:path/2015-03-31/functions/${FunctionArn}/invocations
+            - AWSRegion:
+                Ref: AWS::Region
+              FunctionArn:
+                Fn::GetAtt: [MembershipApiLambda, Arn]
+        httpMethod: POST
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: when_no_templates
+    options:
+      consumes:
+      - "application/json"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'DELETE,GET,OPTIONS,PUT'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,x-api-key'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: "when_no_match"
+        type: "mock"
+        apiKeyRequired: false
+      security: []
+  /membership:
+    post:
+      summary: "Create membership"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Membership object to create"
+          required: true
+          schema:
+            $ref: "#/definitions/Membership"
+      responses:
+        '200':
+          description: "Successful response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+        '400':
+          description: "Invalid response"
+        '500':
+          description: "Error Response"
+      security:
+        - api_key: []
+      x-amazon-apigateway-integration:
+        type: aws_proxy
+        uri: 
+          Fn::Sub:
+            - arn:aws:apigateway:${AWSRegion}:lambda:path/2015-03-31/functions/${FunctionArn}/invocations
+            - AWSRegion:
+                Ref: AWS::Region
+              FunctionArn:
+                Fn::GetAtt: [MembershipApiLambda, Arn]
+        httpMethod: POST
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: when_no_templates
+        requestTemplates:
+          application/json: |
+            #set($inputRoot = $input.json('$'))
+            {
+              "resource": "$context.resourcePath",
+              "httpMethod": "$context.httpMethod",
+              "headers": {
+                #foreach($header in $input.params().header.keySet())
+                  "$header": "$util.escapeJavaScript($input.params().header.get($header))"
+                  #if($foreach.hasNext),#end
+                #end
+              },
+              "body": $inputRoot,
+              "isBase64Encoded": false
+            }
+    get:
+      summary: "Get membership"
+      produces:
+        - "application/json"
+      responses:
+        '200':
+          description: "Successful response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+        '400':
+          description: "Invalid response"
+        '500':
+          description: "Error Response"
+      security:
+        - api_key: []
+      x-amazon-apigateway-integration:
+        type: aws_proxy
+        uri: 
+          Fn::Sub:
+            - arn:aws:apigateway:${AWSRegion}:lambda:path/2015-03-31/functions/${FunctionArn}/invocations
+            - AWSRegion:
+                Ref: AWS::Region
+              FunctionArn:
+                Fn::GetAtt: [MembershipApiLambda, Arn]
+        httpMethod: POST
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: when_no_templates
+    options:
+      consumes:
+      - "application/json"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'GET,OPTIONS,POST'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,x-api-key'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: "when_no_match"
+        type: "mock"
+        apiKeyRequired: false
+      security: []
+  /applications:
+    get:
+      summary: "Get applications"
+      produces:
+        - "application/json"
+      responses:
+        '200':
+          description: "Successful response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+        '400':
+          description: "Invalid response"
+        '500':
+          description: "Error Response"
+      security:
+        - api_key: []
+      x-amazon-apigateway-integration:
+        type: aws_proxy
+        uri: 
+          Fn::Sub:
+            - arn:aws:apigateway:${AWSRegion}:lambda:path/2015-03-31/functions/${FunctionArn}/invocations
+            - AWSRegion:
+                Ref: AWS::Region
+              FunctionArn:
+                Fn::GetAtt: [ApplicationApiLambda, Arn]
+        httpMethod: POST
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: when_no_templates
+    post:
+      summary: "Create application"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Application object to create"
+          required: true
+          schema:
+            $ref: "#/definitions/Application"
+      responses:
+        '200':
+          description: "Successful response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+        '400':
+          description: "Invalid response"
+        '500':
+          description: "Error Response"
+      security:
+        - api_key: []
+      x-amazon-apigateway-integration:
+        type: aws_proxy
+        uri: 
+          Fn::Sub:
+            - arn:aws:apigateway:${AWSRegion}:lambda:path/2015-03-31/functions/${FunctionArn}/invocations
+            - AWSRegion:
+                Ref: AWS::Region
+              FunctionArn:
+                Fn::GetAtt: [ApplicationApiLambda, Arn]
+        httpMethod: POST
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: when_no_templates
+        requestTemplates:
+          application/json: |
+            #set($inputRoot = $input.json('$'))
+            {
+              "resource": "$context.resourcePath",
+              "httpMethod": "$context.httpMethod",
+              "headers": {
+                #foreach($header in $input.params().header.keySet())
+                  "$header": "$util.escapeJavaScript($input.params().header.get($header))"
+                  #if($foreach.hasNext),#end
+                #end
+              },
+              "body": $inputRoot,
+              "isBase64Encoded": false
+            }
+    options:
+      consumes:
+      - "application/json"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'GET,OPTIONS,POST'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,x-api-key'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: "when_no_match"
+        type: "mock"
+        apiKeyRequired: false
+      security: []
+  /applications/{id}:
+    delete:
+      summary: "Delete application"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "Application ID"
+          required: true
+          type: "string"
+      responses:
+        '200':
+          description: "Successful response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+        '400':
+          description: "Invalid response"
+        '500':
+          description: "Error Response"
+      security:
+        - api_key: []
+      x-amazon-apigateway-integration:
+        type: aws_proxy
+        uri: 
+          Fn::Sub:
+            - arn:aws:apigateway:${AWSRegion}:lambda:path/2015-03-31/functions/${FunctionArn}/invocations
+            - AWSRegion:
+                Ref: AWS::Region
+              FunctionArn:
+                Fn::GetAtt: [ApplicationApiLambda, Arn]
+        httpMethod: POST
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: when_no_templates
+    options:
+      consumes:
+      - "application/json"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'DELETE,OPTIONS'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,x-api-key'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: "when_no_match"
+        type: "mock"
+        apiKeyRequired: false
+      security: []
+definitions:
+  Membership:
+    type: "object"
+    properties:
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      email:
+        type: "string"
+      organisation:
+        type: "string"
+      position:
+        type: "string"
+      industry:
+        type: "string"
+      dob:
+        type: "string"
+      city:
+        type: "string"
+      mobile:
+        type: "string"
+      postCode:
+        type: "string"
+  Application:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      email:
+        type: "string"
+      organisation:
+        type: "string"
+      position:
+        type: "string"
+      industry:
+        type: "string"
+      dob:
+        type: "string"
+      city:
+        type: "string"
+      mobile:
+        type: "string"
+      postCode:
+        type: "string"
+      createdAt:
+        type: "string"
+      howDidYouHearAboutUs:
+        type: "string"

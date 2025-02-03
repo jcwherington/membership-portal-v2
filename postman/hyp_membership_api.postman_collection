@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "6f1d910d-7a57-4ff3-9444-f64e1fc64b83",
-		"name": "hyp membership api",
+		"name": "membership api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -159,7 +159,7 @@
 						"header": [
 							{
 								"key": "Origin",
-								"value": "https://hunteryoungprofessionals.com.au/membership/become-a-member/",
+								"value": "<membership_application_form_url>",
 								"type": "default"
 							}
 						],
@@ -188,7 +188,7 @@
 						"header": [
 							{
 								"key": "Origin",
-								"value": "https://hunteryoungprofessionals.com.au/membership/become-a-member/",
+								"value": "<membership_application_form_url>",
 								"type": "default"
 							}
 						],
@@ -226,7 +226,7 @@
 						"header": [
 							{
 								"key": "Origin",
-								"value": "https://hunteryoungprofessionals.com.au/membership/become-a-member/",
+								"value": "<membership_application_form_url>",
 								"type": "default"
 							}
 						],

@@ -1,19 +1,19 @@
-# HYP Membership API
+# Membership API
 
-The HYP membership API project is a monorepo containing a set of RESTful endpoints configured to perform CRUD operations on a PostgreSQL AWS RDS instance and an AWS DynamoDB table. The project consists of the membership and applications lambda functions that read and write to their respective database tables. The Lambda function are invoked by calls to an AWS API Gateway instance and secured by an API Key.
+The membership API project is a monorepo containing a set of RESTful endpoints configured to perform CRUD operations on a PostgreSQL AWS RDS instance and an AWS DynamoDB table. The project consists of the membership and applications lambda functions that read and write to their respective database tables. The Lambda function are invoked by calls to an AWS API Gateway instance and secured by an API Key.
 
 ## Endpoints.
 
-| URL Suffix                | HTTP Method | Description                                                                                         |
-|---------------------------|-------------|-----------------------------------------------------------------------------------------------------|
-| {stage}/applications      | POST        | Adds submitted ‘become a member’ form data from the hyp website to the applications DynamoDB table. |
-| {stage}/applications/{id} | GET         | Retrieves all pending applications from the applications DynamoDB table.                            |
-| {stage}/applications/{id} | DELETE      | Deletes a single record from the applications DynamoDB table for the given ‘id’.                    |
-| {stage}/membership        | GET         | Retrieves all records from the membership Postgres table.                                           |
-| {stage}/membership        | POST        | Adds a record to the membership Postgres table.                                                     |
-| {stage}/membership/{id}   | GET         | Retrieves a single record from the membership Postgres table for the given ‘id’.                    |
-| {stage}/membership/{id}   | PUT         | Updates a single record from the membership Postgres table for the given ‘id’.                      |
-| {stage}/membership/{id}   | DELETE      | Deletes a single record from the membership Postgres table for the given ‘id’.                      |
+| URL Suffix                | HTTP Method | Description                                                                     |
+|---------------------------|-------------|---------------------------------------------------------------------------------|
+| {stage}/applications      | POST        | Adds submitted ‘become a member’ form data to the applications DynamoDB table.  |
+| {stage}/applications/{id} | GET         | Retrieves all pending applications from the applications DynamoDB table.        |
+| {stage}/applications/{id} | DELETE      | Deletes a single record from the applications DynamoDB table for the given ‘id’.|
+| {stage}/membership        | GET         | Retrieves all records from the membership Postgres table.                       |
+| {stage}/membership        | POST        | Adds a record to the membership Postgres table.                                 |
+| {stage}/membership/{id}   | GET         | Retrieves a single record from the membership Postgres table for the given ‘id’.|
+| {stage}/membership/{id}   | PUT         | Updates a single record from the membership Postgres table for the given ‘id’.  |
+| {stage}/membership/{id}   | DELETE      | Deletes a single record from the membership Postgres table for the given ‘id’.  |
 
 Notes
 * The 'stage' part of the URL is the API Gateway stage which is derived from the current git branch when running the deployment script.
@@ -31,17 +31,15 @@ To build and deploy the application you will need to first install a few things.
 
 ## Development
 
-Clone this repository to your machine. If you haven't already, you should create a directory to house this and other hyp repositories.
+Clone this repository to your machine. If you haven't already, you should create a directory to house this and other repositories.
 
 e.g.
 
 ```
-mkdir hyp
-cd hyp
-git clone https://github.com/hyp-admin/membership-api.git
+mkdir Code
+cd Code
+git clone https://github.com/JakeHerington/membership-api.git
 ```
-Notes: 
-* You may be prompted to authenticate to github. It is recommended to [generate a Github Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) for your personal use to track responsibility for code changes. You will need to login the hypadmin github account to generate a token or use the root (not recommended) token to authenticate. These credentials can be found in the HYP password manager.
 
 ## Deployment
 

@@ -15,14 +15,14 @@ APPLICATION_DEPLOYMENT_PACKAGE=application-api.zip
 SWAGGER_DEFINITION=swagger.yml
 
 # Assume deployer role
-aws sts assume-role --role-arn arn:aws:iam::724173394727:role/hyp-deployer-role --role-session-name membership-api-deployment
+aws sts assume-role --role-arn {deployment_role_arn} --role-session-name membership-api-deployment
 
 # Upload the Lambda deployment packages to S3
-aws s3 cp $MEMBERSHIP_DEPLOYMENT_PACKAGE s3://hyp-lambda/$MEMBERSHIP_SRC_OBJECT_KEY --region $AWS_REGION
-aws s3 cp $APPLICATION_DEPLOYMENT_PACKAGE s3://hyp-lambda/$APPLICATION_SRC_OBJECT_KEY --region $AWS_REGION
+aws s3 cp $MEMBERSHIP_DEPLOYMENT_PACKAGE s3://{lambda_bucket}/$MEMBERSHIP_SRC_OBJECT_KEY --region $AWS_REGION
+aws s3 cp $APPLICATION_DEPLOYMENT_PACKAGE s3://{lambda_bucket}/$APPLICATION_SRC_OBJECT_KEY --region $AWS_REGION
 
 # Upload the Lambda swagger definition to S3
-aws s3 cp $SWAGGER_DEFINITION s3://hyp-lambda/$SWAGGER_OBJECT_KEY --region $AWS_REGION
+aws s3 cp $SWAGGER_DEFINITION s3://{lambda_bucket}/$SWAGGER_OBJECT_KEY --region $AWS_REGION
 
 # Deploy the membership api stack
 # Update the stack or create it if it doesn't already exist
@@ -49,11 +49,11 @@ fi
 # Use the latest version of source code
 aws lambda update-function-code \
     --function-name membership-api-handler-$BRANCH \
-    --s3-bucket hyp-lambda \
+    --s3-bucket {lambda_bucket} \
     --s3-key $MEMBERSHIP_SRC_OBJECT_KEY
 aws lambda update-function-code \
     --function-name application-api-handler-$BRANCH \
-    --s3-bucket hyp-lambda \
+    --s3-bucket {lambda_bucket} \
     --s3-key $APPLICATION_SRC_OBJECT_KEY
 
 echo '++ Complete ++'

@@ -11,13 +11,13 @@ def region():
     return 'ap-southeast-2'
 
 def db_endpoint():
-    return 'hyp-db.czwedxheq8hd.ap-southeast-2.rds.amazonaws.com'
+    return '<db_endpoint>'
 
 def db_port():
     return '5432'
 
 def db_name():
-    return 'hyp-db'
+    return '<dbname>'
 
 def branch():
     return os.getenv('BRANCH')
@@ -26,7 +26,7 @@ def schema():
     return 'prod' if branch() == 'main' else 'test'
 
 def get_db_credentials():
-    SECRET_NAME = 'rds!db-570bc63b-c275-489b-b7b0-7dd4c321f3af'
+    SECRET_NAME = '<secret_name>'
 
     session = boto3.session.Session()
     client = session.client(

@@ -16,7 +16,7 @@ const NavBar = ({ children }): JSX.Element => {
         <div>
             <nav className={styles.navbar}>
                 <div className={styles.logo}>
-                    <Image src="https://hyp.org.au/wp-content/uploads/2023/10/cropped-Round-Only.png" alt="Logo" />
+                    <Image src="<logo_image>" alt="Logo" />
                 </div>
                 <ul className={styles.navLinks}>
                     <li><Link href="/admin.html">Members</Link></li>

@@ -8,7 +8,7 @@ const Login = (props: {handler: any}): JSX.Element => {
         <div className={styles.container}>
             <form onSubmit={props.handler} className={styles.form}>
                 <div className={styles.logo}>
-                    <Image src="https://hyp.org.au/wp-content/uploads/2023/10/cropped-Round-Only.png" alt="Logo" />
+                    <Image src="<logo_image>" alt="Logo" />
                 </div>    
                 <div className={styles.formRow}>
                     <label htmlFor="username">Username</label>

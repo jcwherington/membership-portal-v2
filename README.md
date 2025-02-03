@@ -1,8 +1,8 @@
-# HYP Membership Portal
+# Membership Portal
 
-The HYP membership portal is a static web app built to manage membership data and new member applications. The project is built using Typescript and [Next.js](https://nextjs.org/), A [React](https://react.dev/) based framework for full stack web applications. This project makes up the frontend portion of the HYP Membership Platform. The backend portion which this app interfaces with is the [membership api](https://github.com/hyp-admin/membership-api). More information about the api can be found in that projects README.
+The membership portal is a static web app built to manage membership data and new member applications. The project is built using Typescript and [Next.js](https://nextjs.org/), A [React](https://react.dev/) based framework for full stack web applications. This project makes up the frontend portion of the Membership Platform. The backend portion which this app interfaces with is the [membership api](https://github.com/JakeHerington/membership-api). More information about the api can be found in that projects README.
 
-The application is deployed as an AWS S3 static website. A guide on accessing AWS and managing our AWS resources can be found in the [Membership Platform Overview & User Guide](https://docs.google.com/document/d/13KspsvrRANksA_iWkb91knpWMdOuwDMPY5Ottvcl85o/edit?usp=sharing). Login credentials are injected into the application via environmnent variables at build time and up to date credentials should be stored in HYP password manager. More information on how to change credentials can be found in the Environment Variables section.
+The application is deployed as an AWS S3 static website. Login credentials are injected into the application via environmnent variables at build time and up to date credentials should be stored in a password manager. More information on how to change credentials can be found in the Environment Variables section.
 
 ## Getting Started
 
@@ -19,17 +19,15 @@ To build and deploy the application you will need to first install a few things.
 
 ## Development
 
-Clone this repository to your machine. If you haven't already, you should create a directory to house this and other hyp repositories.
+Clone this repository to your machine. If you haven't already, you should create a directory to house this and other repositories.
 
 e.g.
 
 ```
-mkdir hyp
-cd hyp
-git clone https://github.com/hyp-admin/membership-portal.git
+mkdir Code
+cd Code
+git clone https://github.com/JakeHerington/membership-portal.git
 ```
-Notes: 
-* You may be prompted to authenticate to github. It is recommended to [generate a Github Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) for your personal use to track responsibility for code changes. You will need to login the hypadmin github account to generate a token or use the root (not recommended) token to authenticate. These credentials can be found in the HYP password manager.
 
 Next, navigate to the project root and install dependencies.
 ```
@@ -66,8 +64,8 @@ There are currently two S3 buckets configured to host the app.
 
 | Bucket                 | Environment | Description                                                                                                                              | URL                                                                     |
 |------------------------|-------------|------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------|
-| membership-portal-main | Production  | This is our production environment. This bucket should not be deleted under any circumstance other than to decommission the application. | `http://membership-portal-main.s3-website-ap-southeast-2.amazonaws.com` | 
-| membership-portal-test | Test        | This is our testing environment. This bucket is intended to be used for testing new changes before they are rolled out to production.    | `http://membership-portal-test.s3-website-ap-southeast-2.amazonaws.com` |
+| membership-portal-main | Production  | This is our production environment. This bucket should not be deleted under any circumstance other than to decommission the application. | `http://<bucket_name_main>.s3-website-ap-southeast-2.amazonaws.com` | 
+| membership-portal-test | Test        | This is our testing environment. This bucket is intended to be used for testing new changes before they are rolled out to production.    | `http://<bucket-name_test>.s3-website-ap-southeast-2.amazonaws.com` |
 
 The deployment script uses the current git branch to target which environment the generated static assets are deployed to. For example, if you have `main` checked out, running `./scripts/deploy.sh` via the command line will deploy to the production environment. Deployments adhere to the following pattern.
 

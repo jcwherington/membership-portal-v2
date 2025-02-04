@@ -1,0 +1,12 @@
+# ui
+
+ui/node_modules
+ui/package-lock.json
+ui/out
+ui/.next
+ui/next-env.d.ts
+ui/.env
+
+# api
+
+api/*.zip

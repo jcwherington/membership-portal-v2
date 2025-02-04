@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  dynamodb:
+    image: amazon/dynamodb-local:latest
+    container_name: dynamodb
+
+  application-api:
+    image: application-api:test
+    container_name: application-api
+    environment:
+      BRANCH: 'test'
+      AWS_ACCESS_KEY_ID: 'id'
+      AWS_SECRET_ACCESS_KEY: 'key'
+      AWS_SESSION_TOKEN: 'token'
+      DYNAMO_ENDPOINT: 'http://dynamodb:8000'
+    depends_on:
+      - dynamodb

@@ -1,0 +1,318 @@
+{
+	"info": {
+		"_postman_id": "6f1d910d-7a57-4ff3-9444-f64e1fc64b83",
+		"name": "membership api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "membership",
+			"item": [
+				{
+					"name": "/membership",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Jenny\",\r\n    \"lastName\": \"Hanson\",\r\n    \"email\": \"jenny.hanson@unsa.com\",\r\n    \"organisation\": \"UNSA\",\r\n    \"position\": \"President\",\r\n    \"industry\": \"Higher Education\",\r\n    \"dob\": \"2000-01-01\",\r\n    \"mobile\": \"1234567890\",\r\n    \"city\": \"Newcastle\",\r\n    \"postCode\": \"1234\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{GATEWAY_ID}}.execute-api.ap-southeast-2.amazonaws.com/{{STAGE}}/membership",
+							"protocol": "https",
+							"host": [
+								"{{GATEWAY_ID}}",
+								"execute-api",
+								"ap-southeast-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"{{STAGE}}",
+								"membership"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/membership",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{GATEWAY_ID}}.execute-api.ap-southeast-2.amazonaws.com/{{STAGE}}/membership",
+							"protocol": "https",
+							"host": [
+								"{{GATEWAY_ID}}",
+								"execute-api",
+								"ap-southeast-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"{{STAGE}}",
+								"membership"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/membership/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://{{GATEWAY_ID}}.execute-api.ap-southeast-2.amazonaws.com/{{STAGE}}/membership/{{id}}",
+							"protocol": "https",
+							"host": [
+								"{{GATEWAY_ID}}",
+								"execute-api",
+								"ap-southeast-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"{{STAGE}}",
+								"membership",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/membership/{id}",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"firstName\": \"Jenny\",\r\n\"lastName\": \"Hanson\",\r\n\"email\": \"tr34l@newygroup.com.au\",\r\n\"organisation\": \"UNSA\",\r\n\"position\": \"President\",\r\n\"industry\": \"Lower Education\",\r\n\"dob\": \"2000/01/01\",\r\n\"mobile\": \"1234567890\",\r\n\"city\": \"Newcastle\",\r\n\"postCode\": \"5678436\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{GATEWAY_ID}}.execute-api.ap-southeast-2.amazonaws.com/{{STAGE}}/membership/{{id}}",
+							"protocol": "https",
+							"host": [
+								"{{GATEWAY_ID}}",
+								"execute-api",
+								"ap-southeast-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"{{STAGE}}",
+								"membership",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/membership/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{GATEWAY_ID}}.execute-api.ap-southeast-2.amazonaws.com/{{STAGE}}/membership/{{id}}",
+							"protocol": "https",
+							"host": [
+								"{{GATEWAY_ID}}",
+								"execute-api",
+								"ap-southeast-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"{{STAGE}}",
+								"membership",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "applications",
+			"item": [
+				{
+					"name": "/applications",
+					"protocolProfileBehavior": {
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Origin",
+								"value": "<membership_application_form_url>",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "https://{{GATEWAY_ID}}.execute-api.ap-southeast-2.amazonaws.com/{{STAGE}}/applications",
+							"protocol": "https",
+							"host": [
+								"{{GATEWAY_ID}}",
+								"execute-api",
+								"ap-southeast-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"{{STAGE}}",
+								"applications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/applications",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Origin",
+								"value": "<membership_application_form_url>",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"test\",\r\n    \"lastName\": \"test\",\r\n    \"email\": \"test\",\r\n    \"organisation\": \"test\",\r\n    \"position\": \"test\",\r\n    \"industry\": \"test\",\r\n    \"dob\": \"test\",\r\n    \"mobile\": \"test\",\r\n    \"city\": \"test\",\r\n    \"postCode\": \"test\",\r\n    \"createdAt\": \"test\",\r\n    \"id\": \"123\",\r\n    \"howDidYouHearAboutUs\": \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{GATEWAY_ID}}.execute-api.ap-southeast-2.amazonaws.com/{{STAGE}}/applications",
+							"protocol": "https",
+							"host": [
+								"{{GATEWAY_ID}}",
+								"execute-api",
+								"ap-southeast-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"{{STAGE}}",
+								"applications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/applications/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Origin",
+								"value": "<membership_application_form_url>",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "https://{{GATEWAY_ID}}.execute-api.ap-southeast-2.amazonaws.com/{{STAGE}}/applications/:id",
+							"protocol": "https",
+							"host": [
+								"{{GATEWAY_ID}}",
+								"execute-api",
+								"ap-southeast-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"{{STAGE}}",
+								"applications",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "123"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "{{API_KEY}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "x-api-key",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "GATEWAY_ID",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "STAGE",
+			"value": "test",
+			"type": "default"
+		},
+		{
+			"key": "API_KEY",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "id",
+			"value": "",
+			"type": "default"
+		}
+	]
+}

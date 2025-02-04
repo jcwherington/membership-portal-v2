@@ -1,0 +1,15 @@
+.container {
+    background-color: rgb(236, 79, 79);
+    display: flex;
+}
+
+.errorText {
+    padding: 1em;
+    color: white;
+    font-weight: bold;
+}
+
+.icon {
+    margin-top: 0.8em;
+    margin-left: 1em;
+}

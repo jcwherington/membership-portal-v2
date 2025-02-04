@@ -1,0 +1,54 @@
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+}
+  
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    background-color: white;
+    padding: 3rem;
+}
+
+.formRow {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    width: 100%
+}
+
+.formRow label {
+    width: 40%;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.buttonWrapper {
+    margin: 1rem;
+}
+
+.form h1 {
+    font-weight: lighter;
+    margin-bottom: 3rem;
+}
+
+.formRow span {
+    font-size: small;
+    width: 100%;
+}
+
+.formRow p {
+    width: 40%
+}
+
+.formRow textarea {
+    height: 10rem;
+    width: 100%;
+}

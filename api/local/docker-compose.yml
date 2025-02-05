@@ -1,0 +1,54 @@
+version: '3.4'
+
+services:
+  dynamodb:
+    image: amazon/dynamodb-local:latest
+    container_name: dynamodb
+
+  application-api:
+    image: application-api:local
+    container_name: application-api
+    environment:
+      BRANCH: 'local'
+      AWS_ACCESS_KEY_ID: 'id'
+      AWS_SECRET_ACCESS_KEY: 'key'
+      AWS_SESSION_TOKEN: 'token'
+      DYNAMO_ENDPOINT: 'http://dynamodb:8000'
+    depends_on:
+      - dynamodb
+  
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: 'password'
+      POSTGRES_DB: 'local_db'
+
+  membership-api:
+    image: membership-api:local
+    container_name: membership-api
+    environment:
+      BRANCH: 'local'
+      # AWS_ACCESS_KEY_ID: 'id'
+      # AWS_SECRET_ACCESS_KEY: 'key'
+      # AWS_SESSION_TOKEN: 'token'
+      # DYNAMO_ENDPOINT: 'http://dynamodb:8000'
+    depends_on:
+      - postgres
+
+  # proxy:
+  #   image:
+  #   container_name: proxy
+  #   depends_on:
+  #     - application-api
+  #     - membership-api
+
+  # init:
+  #   # image:
+  #   container_name: init
+  #   depends_on:
+  #     - postgres
+  #     - dynamodb

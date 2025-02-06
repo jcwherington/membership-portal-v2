@@ -7,7 +7,7 @@ def branch():
     return os.getenv('BRANCH')
 
 def region():
-    return 'ap-southeast-2'
+    return 'us-west-2'
 
 def table_name():
     return f'applications-{branch()}'

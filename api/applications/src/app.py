@@ -12,7 +12,7 @@ def handler(event, _context):
         log = logger()
         log.info(event)
 
-        if event['body']:
+        if event['body'] and type(event['body']) == str:
             event['body'] = json.loads(event['body'])
 
         validate_event(event)

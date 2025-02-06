@@ -77,11 +77,11 @@ class Application:
             applicant_data['organisation'],
             applicant_data['position'],
             applicant_data['industry'],
-            datetime.strptime(applicant_data['dob']['value'], "%d/%m/%Y").strftime("%Y-%m-%d"),
+            datetime.strptime(applicant_data['dob'], "%Y-%m-%d").strftime("%d-%m-%Y"),
             applicant_data['mobile'],
             applicant_data['city'],
             applicant_data['postCode'],
-            applicant_data['createdAt']
+            datetime.strptime(applicant_data['createdAt'], "%Y-%m-%d").strftime("%d-%m-%Y")
         )
     
     @classmethod

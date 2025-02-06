@@ -36,8 +36,7 @@ class Dynamo():
                     'id': {
                         'S': id
                     }
-                },
-                ReturnValues='ALL_OLD'
+                }
             )
         except ClientError as error:
             raise DynamoError(error.response['Error']['Message'])

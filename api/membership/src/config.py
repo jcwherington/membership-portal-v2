@@ -8,24 +8,33 @@ from botocore.exceptions import ClientError
 
 
 def region():
-    return 'ap-southeast-2'
+    return 'us-west-2'
 
 def db_endpoint():
-    return '<db_endpoint>'
+    return os.getenv('DB_ENDPOINT')
 
 def db_port():
-    return '5432'
+    return os.getenv('DB_PORT')
 
 def db_name():
-    return '<dbname>'
+    return os.getenv('DB_NAME')
 
 def branch():
     return os.getenv('BRANCH')
 
 def schema():
-    return 'prod' if branch() == 'main' else 'test'
+    match branch():
+        case 'local':
+            return 'local'
+        case 'main':
+            return 'prod'
+        case _:
+            return 'test'
 
 def get_db_credentials():
+    if branch() == 'local':
+        return local_db_credentials()
+    
     SECRET_NAME = '<secret_name>'
 
     session = boto3.session.Session()
@@ -43,6 +52,12 @@ def get_db_credentials():
         raise error
 
     return json.loads(response['SecretString'])
+
+def local_db_credentials():
+    return {
+        'username': os.getenv('DB_USER'),
+        'password': os.getenv('DB_PASSWORD')
+    }
 
 def logger():
     logging.basicConfig(

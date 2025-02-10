@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "6f1d910d-7a57-4ff3-9444-f64e1fc64b83",
-		"name": "membership api",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"_postman_id": "8fffd2dd-fb5d-4f25-8380-c899bae0ad6e",
+		"name": "membership_api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41832999"
 	},
 	"item": [
 		{
@@ -194,7 +195,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"test\",\r\n    \"lastName\": \"test\",\r\n    \"email\": \"test\",\r\n    \"organisation\": \"test\",\r\n    \"position\": \"test\",\r\n    \"industry\": \"test\",\r\n    \"dob\": \"test\",\r\n    \"mobile\": \"test\",\r\n    \"city\": \"test\",\r\n    \"postCode\": \"test\",\r\n    \"createdAt\": \"test\",\r\n    \"id\": \"123\",\r\n    \"howDidYouHearAboutUs\": \"test\"\r\n}",
+							"raw": "{\r\n    \"httpMethod\": \"POST\",\r\n    \"body\": {\r\n        \"id\": \"1234\",\r\n        \"firstName\": \"John\",\r\n        \"lastName\": \"Doe\",\r\n        \"email\": \"john.doe@example.com\",\r\n        \"organisation\": \"Johns Accounting\",\r\n        \"position\": \"President\",\r\n        \"industry\": \"Accounting\",\r\n        \"dob\": \"2000-01-01\",\r\n        \"mobile\": \"1234567890\",\r\n        \"city\": \"Newcastle\",\r\n        \"postCode\": \"1234\",\r\n        \"createdAt\": \"2025-01-01\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -202,18 +203,17 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{GATEWAY_ID}}.execute-api.ap-southeast-2.amazonaws.com/{{STAGE}}/applications",
-							"protocol": "https",
+							"raw": "http://localhost:9002/2015-03-31/functions/function/invocations",
+							"protocol": "http",
 							"host": [
-								"{{GATEWAY_ID}}",
-								"execute-api",
-								"ap-southeast-2",
-								"amazonaws",
-								"com"
+								"localhost"
 							],
+							"port": "9002",
 							"path": [
-								"{{STAGE}}",
-								"applications"
+								"2015-03-31",
+								"functions",
+								"function",
+								"invocations"
 							]
 						}
 					},

@@ -7,12 +7,12 @@ from model.response import Response
 from config import logger
 
 
-def handler(event, context):
+def handler(event, _context):
     try:
         log = logger()
         log.info(event)
         
-        if event['body']:
+        if event['body'] and type(event['body']) == str:
             event['body'] = json.loads(event['body'])
 
         validate_event(event)

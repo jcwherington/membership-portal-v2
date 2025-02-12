@@ -46,9 +46,13 @@ services:
     depends_on:
       - postgres
 
-  # proxy:
-  #   image:
-  #   container_name: proxy
-  #   depends_on:
-  #     - application-api
-  #     - membership-api
+  proxy:
+    image: openresty/openresty:alpine
+    container_name: proxy
+    volumes:
+      - ./nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
+    ports:
+      - "9000:80"
+    depends_on:
+      - application-api
+      - membership-api

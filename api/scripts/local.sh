@@ -14,7 +14,6 @@ echo "--- :docker: :hammer: Building API Images"
 
 docker build --target applications -t application-api:local -f local/Dockerfile .
 docker build --target membership -t membership-api:local -f local/Dockerfile .
-# docker build --target proxy -t proxy:lcoal -f local/Dockerfile .
 
 echo "--- :docker: Starting Containers"
 

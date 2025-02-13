@@ -7,253 +7,781 @@
 	},
 	"item": [
 		{
-			"name": "membership",
+			"name": "invocations_endpoints",
 			"item": [
 				{
-					"name": "/membership",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"Jenny\",\r\n    \"lastName\": \"Hanson\",\r\n    \"email\": \"jenny.hanson@unsa.com\",\r\n    \"organisation\": \"UNSA\",\r\n    \"position\": \"President\",\r\n    \"industry\": \"Higher Education\",\r\n    \"dob\": \"2000-01-01\",\r\n    \"mobile\": \"1234567890\",\r\n    \"city\": \"Newcastle\",\r\n    \"postCode\": \"1234\"\r\n  }",
-							"options": {
-								"raw": {
-									"language": "json"
+					"name": "membership",
+					"item": [
+						{
+							"name": "/membership_POST",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"httpMethod\": \"POST\",\r\n    \"body\": {\r\n        \"firstName\": \"Joe\",\r\n        \"lastName\": \"Hanson\",\r\n        \"email\": \"jenny.hanson@unsa.com\",\r\n        \"organisation\": \"UNSA\",\r\n        \"position\": \"President\",\r\n        \"industry\": \"Higher Education\",\r\n        \"dob\": \"2000-01-01\",\r\n        \"mobile\": \"1234567890\",\r\n        \"city\": \"Newcastle\",\r\n        \"postCode\": \"1234\"\r\n    },\r\n    \"pathParameters\": {}\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9001/2015-03-31/functions/function/invocations",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9001",
+									"path": [
+										"2015-03-31",
+										"functions",
+										"function",
+										"invocations"
+									]
 								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "https://{{GATEWAY_ID}}.execute-api.ap-southeast-2.amazonaws.com/{{STAGE}}/membership",
-							"protocol": "https",
-							"host": [
-								"{{GATEWAY_ID}}",
-								"execute-api",
-								"ap-southeast-2",
-								"amazonaws",
-								"com"
-							],
-							"path": [
-								"{{STAGE}}",
-								"membership"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/membership",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://{{GATEWAY_ID}}.execute-api.ap-southeast-2.amazonaws.com/{{STAGE}}/membership",
-							"protocol": "https",
-							"host": [
-								"{{GATEWAY_ID}}",
-								"execute-api",
-								"ap-southeast-2",
-								"amazonaws",
-								"com"
-							],
-							"path": [
-								"{{STAGE}}",
-								"membership"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/membership/{id}",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "https://{{GATEWAY_ID}}.execute-api.ap-southeast-2.amazonaws.com/{{STAGE}}/membership/{{id}}",
-							"protocol": "https",
-							"host": [
-								"{{GATEWAY_ID}}",
-								"execute-api",
-								"ap-southeast-2",
-								"amazonaws",
-								"com"
-							],
-							"path": [
-								"{{STAGE}}",
-								"membership",
-								"{{id}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/membership/{id}",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n\"firstName\": \"Jenny\",\r\n\"lastName\": \"Hanson\",\r\n\"email\": \"tr34l@newygroup.com.au\",\r\n\"organisation\": \"UNSA\",\r\n\"position\": \"President\",\r\n\"industry\": \"Lower Education\",\r\n\"dob\": \"2000/01/01\",\r\n\"mobile\": \"1234567890\",\r\n\"city\": \"Newcastle\",\r\n\"postCode\": \"5678436\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+						{
+							"name": "/membership_GET",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"httpMethod\": \"GET\",\n    \"body\": {},\n    \"pathParameters\": {}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9001/2015-03-31/functions/function/invocations",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9001",
+									"path": [
+										"2015-03-31",
+										"functions",
+										"function",
+										"invocations"
+									]
 								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "https://{{GATEWAY_ID}}.execute-api.ap-southeast-2.amazonaws.com/{{STAGE}}/membership/{{id}}",
-							"protocol": "https",
-							"host": [
-								"{{GATEWAY_ID}}",
-								"execute-api",
-								"ap-southeast-2",
-								"amazonaws",
-								"com"
-							],
-							"path": [
-								"{{STAGE}}",
-								"membership",
-								"{{id}}"
-							]
+						{
+							"name": "/membership/{id}_DELETE",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"httpMethod\": \"DELETE\",\n    \"body\": {},\n    \"pathParameters\": {\n        \"id\": \"1\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9001/2015-03-31/functions/function/invocations",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9001",
+									"path": [
+										"2015-03-31",
+										"functions",
+										"function",
+										"invocations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/membership/{id}_PUT",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"httpMethod\": \"PUT\",\r\n    \"body\": {\r\n        \"firstName\": \"Joe\",\r\n        \"lastName\": \"Hanson\",\r\n        \"email\": \"tr34l@newygroup.com.au\",\r\n        \"organisation\": \"NewyGroup\",\r\n        \"position\": \"President\",\r\n        \"industry\": \"Lower Education\",\r\n        \"dob\": \"2000-01-01\",\r\n        \"mobile\": \"1234567890\",\r\n        \"city\": \"Newcastle\",\r\n        \"postCode\": \"5678\"\r\n    },\r\n    \"pathParameters\": {\r\n        \"id\": \"1\"\r\n    }\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9001/2015-03-31/functions/function/invocations",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9001",
+									"path": [
+										"2015-03-31",
+										"functions",
+										"function",
+										"invocations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/membership/{id}_GET",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"httpMethod\": \"GET\",\n    \"body\": {},\n    \"pathParameters\": {\n        \"id\": \"1\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9001/2015-03-31/functions/function/invocations",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9001",
+									"path": [
+										"2015-03-31",
+										"functions",
+										"function",
+										"invocations"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "/membership/{id}",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://{{GATEWAY_ID}}.execute-api.ap-southeast-2.amazonaws.com/{{STAGE}}/membership/{{id}}",
-							"protocol": "https",
-							"host": [
-								"{{GATEWAY_ID}}",
-								"execute-api",
-								"ap-southeast-2",
-								"amazonaws",
-								"com"
-							],
-							"path": [
-								"{{STAGE}}",
-								"membership",
-								"{{id}}"
-							]
+					"name": "applications",
+					"item": [
+						{
+							"name": "/applications_GET",
+							"protocolProfileBehavior": {
+								"disableCookies": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Origin",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"httpMethod\": \"GET\",\n    \"body\": {}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9002/2015-03-31/functions/function/invocations",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9002",
+									"path": [
+										"2015-03-31",
+										"functions",
+										"function",
+										"invocations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/applications_POST",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Origin",
+										"value": "<membership_application_form_url>",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"httpMethod\": \"POST\",\r\n    \"body\": {\r\n        \"firstName\": \"test\",\r\n        \"lastName\": \"test\",\r\n        \"email\": \"test@test.com\",\r\n        \"organisation\": \"test\",\r\n        \"position\": \"test\",\r\n        \"industry\": \"test\",\r\n        \"dob\": \"2000-01-01\",\r\n        \"mobile\": \"1234567890\",\r\n        \"city\": \"test\",\r\n        \"postCode\": \"1234\",\r\n        \"createdAt\": \"2025-01-06\",\r\n        \"id\": \"123\",\r\n        \"howDidYouHearAboutUs\": \"test\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9002/2015-03-31/functions/function/invocations",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9002",
+									"path": [
+										"2015-03-31",
+										"functions",
+										"function",
+										"invocations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/applications/{id}_DELETE",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Origin",
+										"value": "<membership_application_form_url>",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"httpMethod\": \"DELETE\",\n    \"body\": {},\n    \"pathParameters\": {\n        \"id\": \"123\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9002/2015-03-31/functions/function/invocations",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9002",
+									"path": [
+										"2015-03-31",
+										"functions",
+										"function",
+										"invocations"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				}
 			]
 		},
 		{
-			"name": "applications",
+			"name": "proxy_endpoints",
 			"item": [
 				{
-					"name": "/applications",
-					"protocolProfileBehavior": {
-						"disableCookies": false
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Origin",
-								"value": "<membership_application_form_url>",
-								"type": "default"
-							}
-						],
-						"url": {
-							"raw": "https://{{GATEWAY_ID}}.execute-api.ap-southeast-2.amazonaws.com/{{STAGE}}/applications",
-							"protocol": "https",
-							"host": [
-								"{{GATEWAY_ID}}",
-								"execute-api",
-								"ap-southeast-2",
-								"amazonaws",
-								"com"
-							],
-							"path": [
-								"{{STAGE}}",
-								"applications"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/applications",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Origin",
-								"value": "<membership_application_form_url>",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"httpMethod\": \"POST\",\r\n    \"body\": {\r\n        \"id\": \"1234\",\r\n        \"firstName\": \"John\",\r\n        \"lastName\": \"Doe\",\r\n        \"email\": \"john.doe@example.com\",\r\n        \"organisation\": \"Johns Accounting\",\r\n        \"position\": \"President\",\r\n        \"industry\": \"Accounting\",\r\n        \"dob\": \"2000-01-01\",\r\n        \"mobile\": \"1234567890\",\r\n        \"city\": \"Newcastle\",\r\n        \"postCode\": \"1234\",\r\n        \"createdAt\": \"2025-01-01\"\r\n    }\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+					"name": "membership",
+					"item": [
+						{
+							"name": "/membership",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9000/membership",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"membership"
+									]
 								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "http://localhost:9002/2015-03-31/functions/function/invocations",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "9002",
-							"path": [
-								"2015-03-31",
-								"functions",
-								"function",
-								"invocations"
-							]
+						{
+							"name": "/membership",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"Joe\",\r\n    \"lastName\": \"Hanson\",\r\n    \"email\": \"jenny.hanson@unsa.com\",\r\n    \"organisation\": \"UNSA\",\r\n    \"position\": \"President\",\r\n    \"industry\": \"Higher Education\",\r\n    \"dob\": \"2000-01-01\",\r\n    \"mobile\": \"1234567890\",\r\n    \"city\": \"Newcastle\",\r\n    \"postCode\": \"1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/membership",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"membership"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/membership/{id}",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9000/membership/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"membership",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/membership/{id}",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"Joe\",\r\n    \"lastName\": \"Hanson\",\r\n    \"email\": \"tr34l@newygroup.com.au\",\r\n    \"organisation\": \"NewyGroup\",\r\n    \"position\": \"President\",\r\n    \"industry\": \"Lower Education\",\r\n    \"dob\": \"2000-01-01\",\r\n    \"mobile\": \"1234567890\",\r\n    \"city\": \"Newcastle\",\r\n    \"postCode\": \"5678\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/membership/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"membership",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/membership/{id}",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9000/membership/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"membership",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "/applications/{id}",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Origin",
-								"value": "<membership_application_form_url>",
-								"type": "default"
-							}
-						],
-						"url": {
-							"raw": "https://{{GATEWAY_ID}}.execute-api.ap-southeast-2.amazonaws.com/{{STAGE}}/applications/:id",
-							"protocol": "https",
-							"host": [
-								"{{GATEWAY_ID}}",
-								"execute-api",
-								"ap-southeast-2",
-								"amazonaws",
-								"com"
-							],
-							"path": [
-								"{{STAGE}}",
-								"applications",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "123"
+					"name": "applications",
+					"item": [
+						{
+							"name": "/applications_GET",
+							"protocolProfileBehavior": {
+								"disableCookies": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Origin",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "http://localhost:9000/applications",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"applications"
+									]
 								}
-							]
+							},
+							"response": []
+						},
+						{
+							"name": "/applications_POST",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Origin",
+										"value": "<membership_application_form_url>",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"test\",\r\n    \"lastName\": \"test\",\r\n    \"email\": \"test@test.com\",\r\n    \"organisation\": \"test\",\r\n    \"position\": \"test\",\r\n    \"industry\": \"test\",\r\n    \"dob\": \"2000-01-01\",\r\n    \"mobile\": \"1234567890\",\r\n    \"city\": \"test\",\r\n    \"postCode\": \"1234\",\r\n    \"createdAt\": \"2025-01-06\",\r\n    \"id\": \"123\",\r\n    \"howDidYouHearAboutUs\": \"test\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/applications",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"applications"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/applications/{id}_DELETE",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Origin",
+										"value": "<membership_application_form_url>",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:9000/applications/{id}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"applications",
+										"{id}"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
+				}
+			]
+		},
+		{
+			"name": "deployed_endpoints",
+			"item": [
+				{
+					"name": "membership",
+					"item": [
+						{
+							"name": "/membership",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"Jenny\",\r\n    \"lastName\": \"Hanson\",\r\n    \"email\": \"jenny.hanson@unsa.com\",\r\n    \"organisation\": \"UNSA\",\r\n    \"position\": \"President\",\r\n    \"industry\": \"Higher Education\",\r\n    \"dob\": \"2000-01-01\",\r\n    \"mobile\": \"1234567890\",\r\n    \"city\": \"Newcastle\",\r\n    \"postCode\": \"1234\"\r\n  }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{GATEWAY_ID}}.execute-api.ap-southeast-2.amazonaws.com/{{STAGE}}/membership",
+									"protocol": "https",
+									"host": [
+										"{{GATEWAY_ID}}",
+										"execute-api",
+										"ap-southeast-2",
+										"amazonaws",
+										"com"
+									],
+									"path": [
+										"{{STAGE}}",
+										"membership"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/membership",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{GATEWAY_ID}}.execute-api.ap-southeast-2.amazonaws.com/{{STAGE}}/membership",
+									"protocol": "https",
+									"host": [
+										"{{GATEWAY_ID}}",
+										"execute-api",
+										"ap-southeast-2",
+										"amazonaws",
+										"com"
+									],
+									"path": [
+										"{{STAGE}}",
+										"membership"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/membership/{id}",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://{{GATEWAY_ID}}.execute-api.ap-southeast-2.amazonaws.com/{{STAGE}}/membership/{{id}}",
+									"protocol": "https",
+									"host": [
+										"{{GATEWAY_ID}}",
+										"execute-api",
+										"ap-southeast-2",
+										"amazonaws",
+										"com"
+									],
+									"path": [
+										"{{STAGE}}",
+										"membership",
+										"{{id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/membership/{id}",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\"firstName\": \"Jenny\",\r\n\"lastName\": \"Hanson\",\r\n\"email\": \"tr34l@newygroup.com.au\",\r\n\"organisation\": \"UNSA\",\r\n\"position\": \"President\",\r\n\"industry\": \"Lower Education\",\r\n\"dob\": \"2000/01/01\",\r\n\"mobile\": \"1234567890\",\r\n\"city\": \"Newcastle\",\r\n\"postCode\": \"5678436\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{GATEWAY_ID}}.execute-api.ap-southeast-2.amazonaws.com/{{STAGE}}/membership/{{id}}",
+									"protocol": "https",
+									"host": [
+										"{{GATEWAY_ID}}",
+										"execute-api",
+										"ap-southeast-2",
+										"amazonaws",
+										"com"
+									],
+									"path": [
+										"{{STAGE}}",
+										"membership",
+										"{{id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/membership/{id}",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{GATEWAY_ID}}.execute-api.ap-southeast-2.amazonaws.com/{{STAGE}}/membership/{{id}}",
+									"protocol": "https",
+									"host": [
+										"{{GATEWAY_ID}}",
+										"execute-api",
+										"ap-southeast-2",
+										"amazonaws",
+										"com"
+									],
+									"path": [
+										"{{STAGE}}",
+										"membership",
+										"{{id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "applications",
+					"item": [
+						{
+							"name": "/applications",
+							"protocolProfileBehavior": {
+								"disableCookies": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Origin",
+										"value": "<membership_application_form_url>",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "https://{{GATEWAY_ID}}.execute-api.ap-southeast-2.amazonaws.com/{{STAGE}}/applications",
+									"protocol": "https",
+									"host": [
+										"{{GATEWAY_ID}}",
+										"execute-api",
+										"ap-southeast-2",
+										"amazonaws",
+										"com"
+									],
+									"path": [
+										"{{STAGE}}",
+										"applications"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/applications",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Origin",
+										"value": "<membership_application_form_url>",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"httpMethod\": \"POST\",\r\n    \"body\": {\r\n        \"id\": \"1234\",\r\n        \"firstName\": \"John\",\r\n        \"lastName\": \"Doe\",\r\n        \"email\": \"john.doe@example.com\",\r\n        \"organisation\": \"Johns Accounting\",\r\n        \"position\": \"President\",\r\n        \"industry\": \"Accounting\",\r\n        \"dob\": \"2000-01-01\",\r\n        \"mobile\": \"1234567890\",\r\n        \"city\": \"Newcastle\",\r\n        \"postCode\": \"1234\",\r\n        \"createdAt\": \"2025-01-01\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9002/2015-03-31/functions/function/invocations",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9002",
+									"path": [
+										"2015-03-31",
+										"functions",
+										"function",
+										"invocations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/applications/{id}",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Origin",
+										"value": "<membership_application_form_url>",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "https://{{GATEWAY_ID}}.execute-api.ap-southeast-2.amazonaws.com/{{STAGE}}/applications/:id",
+									"protocol": "https",
+									"host": [
+										"{{GATEWAY_ID}}",
+										"execute-api",
+										"ap-southeast-2",
+										"amazonaws",
+										"com"
+									],
+									"path": [
+										"{{STAGE}}",
+										"applications",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		}

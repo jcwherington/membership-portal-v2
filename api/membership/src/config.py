@@ -23,13 +23,12 @@ def branch():
     return os.getenv('BRANCH')
 
 def schema():
-    match branch():
-        case 'local':
-            return 'local'
-        case 'main':
-            return 'prod'
-        case _:
-            return 'test'
+    if branch() == 'local':
+        return 'local'
+    elif branch() == 'main':
+        return 'prod'
+    else:
+        return 'test'
 
 def get_db_credentials():
     if branch() == 'local':
@@ -66,4 +65,5 @@ def logger():
         format='PID=%(process)d LVL=%(levelname)s MSG=%(message)s', 
         force=True
     )
+    
     return logging.getLogger()

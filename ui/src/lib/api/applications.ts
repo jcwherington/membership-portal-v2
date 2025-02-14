@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { applicationsURL, apiKey } from '../../config';
+import { applicationsURL, apiKey, local } from '../../config';
 
 async function handler(url: string, method: string, payload=null) {
     const requestConfig: AxiosRequestConfig = {
@@ -11,8 +11,19 @@ async function handler(url: string, method: string, payload=null) {
         }
     }
 
-    const res = await axios(requestConfig);
-    return res;
+    const result = await axios(requestConfig);
+
+    if (local()) {
+        const body = JSON.parse(result.data?.body);
+        console.log(result);
+        return {
+            status: result.status,
+            data:   body.data,
+            message: body.message
+        }
+    }
+
+    return result;
 }
 
 export async function fetchApplications() {

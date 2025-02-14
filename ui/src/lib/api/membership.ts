@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import Member from '@/model/member';
-import { membershipURL, apiKey } from '@/config';
+import { membershipURL, apiKey, local } from '@/config';
 
 async function handler(url, method, payload = null) {
     const requestConfig: AxiosRequestConfig = {
@@ -13,12 +13,24 @@ async function handler(url, method, payload = null) {
         }
     }
 
-    return await axios(requestConfig);
+    const result = await axios(requestConfig);
+
+    if (local()) {
+        const body = JSON.parse(result.data?.body);
+        console.log(result);
+        return {
+            status: result.status,
+            data:   body.data,
+            message: body.message
+        }
+    }
+
+    return result;
 }
 
 export async function fetchMembers() {
     const method = 'GET';
-    
+
     return await handler(membershipURL(), method);
 }
 

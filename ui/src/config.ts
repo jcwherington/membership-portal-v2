@@ -19,13 +19,13 @@ export function local() {
 }
 
 export function baseURL() {
-    return `${process.env.BASE_URL}/${local() ? 'test' : stage()}/`;
+    return `${process.env.BASE_URL}/${local() ? '' : stage()}`;
 }
 
 export function applicationsURL() {
-    return baseURL().concat('applications');
+    return baseURL().concat(`${local() ? '' : '/'}applications`);
 }
 
 export function membershipURL() {
-    return baseURL().concat('membership');
+    return baseURL().concat(`${local() ? '' : '/'}membership`);
 }

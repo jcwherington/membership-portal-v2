@@ -30,7 +30,7 @@ export default function Applications() {
     if (!data) return <CircularProgress />;
 
     if (!initMembers) {
-        const membersList: Member[] = data?.data.data.map((entry: Member) => {
+        const membersList: Member[] = data.data.map((entry: Member) => {
             return new Member(entry);
         });
         setMembers(membersList.sort((memberA, memberB) => memberA.compare(memberB)));

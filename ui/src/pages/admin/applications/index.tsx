@@ -25,7 +25,7 @@ export default function Applications() {
 
     if (!data) return <CircularProgress />;
 
-    const applicantsList: Applicant[] = data?.data.data.map((entry: any) => {
+    const applicantsList: Applicant[] = data.data.map((entry: any) => {
         return new Applicant(entry);
     });
 

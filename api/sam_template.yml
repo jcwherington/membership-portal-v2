@@ -16,6 +16,24 @@ Parameters:
     Type: String
     Default: "main"
     Description: Environment lambda is deployed in - Test or Prod.
+  Bucket:
+    Type: String
+    Description: Lambda source code bucket
+  DbName:
+    Type: String
+    Description: Membership database name
+  DbPort:
+    Type: String
+    Description: Membership database port
+  DbEndpoint:
+    Type: String
+    Description: Membership database endpoint
+  DbUser:
+    Type: String
+    Description: Membership database user
+  DbPassword:
+    Type: String
+    Description: Membership database password
 
 Resources:
   MembershipApiLambda:
@@ -26,13 +44,18 @@ Resources:
       Runtime: python3.8
       Role: !GetAtt MembershipApiLambdaRole.Arn
       CodeUri:
-        Bucket: {lambda_bucket}
+        Bucket: !Ref Bucket
         Key: !Ref MembershipSrcObjectKey
       MemorySize: 128
       Timeout: 30
       Environment:
         Variables:
           BRANCH: !Ref Branch
+          DB_NAME: !Ref DbName
+          DB_PORT: !Ref DbPort
+          DB_ENDPOINT: !Ref DbEndpoint
+          DB_USER: !Ref DbUser
+          DB_PASSWORD: !Ref DbPassword
       AssumeRolePolicyDocument:
         Version: "2012-10-17"
         Statement:
@@ -44,6 +67,13 @@ Resources:
             Principal:
               Service: lambda.amazonaws.com
             Action: sts:AssumeRole
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-04caff40b09c98f17
+        SubnetIds:
+          - subnet-0d559bcdc99142fc9
+          - subnet-09636efde372f7c29
+          - subnet-02266618a1c5df2f3
 
   ApplicationApiLambda:
     Type: AWS::Serverless::Function
@@ -53,7 +83,7 @@ Resources:
       Runtime: python3.8
       Role: !GetAtt MembershipApiLambdaRole.Arn
       CodeUri:
-        Bucket: {lambda_bucket}
+        Bucket: !Ref Bucket
         Key: !Ref ApplicationSrcObjectKey
       MemorySize: 128
       Timeout: 30
@@ -87,7 +117,7 @@ Resources:
         Fn::Transform:
           Name: AWS::Include
           Parameters:
-            Location: !Sub 's3://{lambda_bucket}/${SwaggerObjectKey}'
+            Location: !Sub 's3://${Bucket}/${SwaggerObjectKey}'
 
   MembershipApiLambdaRole:
     Type: AWS::IAM::Role
@@ -102,16 +132,8 @@ Resources:
             Action: sts:AssumeRole
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole
       Policies:
-        - PolicyName: DatabaseCredentials
-          PolicyDocument:
-            Version: '2012-10-17'
-            Statement:
-              - Effect: Allow
-                Action:
-                  - secretsmanager:GetSecretValue
-                Resource:
-                  - !Sub "arn:aws:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:rds!db-570bc63b-c275-489b-b7b0-7dd4c321f3af-0FQtiu"
         - PolicyName: ApplicationTablePermissions
           PolicyDocument:
             Version: '2012-10-17'

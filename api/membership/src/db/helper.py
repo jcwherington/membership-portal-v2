@@ -1,15 +1,13 @@
 from sqlalchemy import URL, Table, MetaData, Column, Text, DateTime, String, Integer
 
-from config import db_endpoint, db_name, db_port, get_db_credentials, schema
+from config import db_endpoint, db_name, db_port, db_user, db_password, schema
 
 
 def connection_string():
-    credentials = get_db_credentials()
-
     return URL.create(
         'postgresql+psycopg2',
-        username=credentials["username"],
-        password=credentials["password"],
+        username=db_user(),
+        password=db_password(),
         host=db_endpoint(),
         database=db_name(),
         port=db_port()

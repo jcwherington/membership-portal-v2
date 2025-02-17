@@ -1,10 +1,6 @@
-import json
 import sys
 import logging
 import os
-
-import boto3
-from botocore.exceptions import ClientError
 
 
 def region():
@@ -19,6 +15,12 @@ def db_port():
 def db_name():
     return os.getenv('DB_NAME')
 
+def db_user():
+    return os.getenv('DB_USER')
+    
+def db_password():
+    return os.getenv('DB_PASSWORD')
+
 def branch():
     return os.getenv('BRANCH')
 
@@ -29,34 +31,6 @@ def schema():
         return 'prod'
     else:
         return 'test'
-
-def get_db_credentials():
-    if branch() == 'local':
-        return local_db_credentials()
-    
-    SECRET_NAME = '<secret_name>'
-
-    session = boto3.session.Session()
-    client = session.client(
-        service_name='secretsmanager',
-        region_name=region()
-    )
-
-    try:
-        response = client.get_secret_value(
-            SecretId=SECRET_NAME
-        )
-    except ClientError as error:
-        logging.error(error)
-        raise error
-
-    return json.loads(response['SecretString'])
-
-def local_db_credentials():
-    return {
-        'username': os.getenv('DB_USER'),
-        'password': os.getenv('DB_PASSWORD')
-    }
 
 def logger():
     logging.basicConfig(

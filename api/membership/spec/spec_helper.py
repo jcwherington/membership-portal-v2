@@ -1,7 +1,6 @@
 import json
-import os
 
-from sqlalchemy import URL, text
+from sqlalchemy import text
 
 
 def test_event():
@@ -40,16 +39,6 @@ def test_body():
         "city": "Newcastle",
         "postCode": "1234"
     }
-
-def test_connection_string():
-    return URL.create(
-        'postgresql+psycopg2',
-        username='postgres',
-        password='password',
-        database='test_db',
-        host=os.environ.get('IP'),
-        port=5432
-    )
 
 def expected_membership_keys():
     return [

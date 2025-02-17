@@ -3,7 +3,7 @@ from unittest.mock import patch
 from sqlalchemy.exc import IntegrityError
 
 from db.client import Client
-from spec_helper import test_connection_string, test_event, test_body, expected_membership_keys, populate_database
+from spec_helper import test_event, test_body, expected_membership_keys, populate_database
 from model.membership import Membership
 from common.error import DatabaseError
 
@@ -15,9 +15,7 @@ class DatabaseTest(unittest.TestCase):
         self.event['body'] = test_body()
         self.member = Membership.from_event(self.event)
     
-    @patch('db.client.connection_string')
-    def test_create(self, connection_string_patch):
-        connection_string_patch.return_value = test_connection_string()
+    def test_create(self):
         client = Client()
 
         result = client.create(self.member)
@@ -26,9 +24,7 @@ class DatabaseTest(unittest.TestCase):
         self.assertTrue(all(key in as_dict.keys() for key in expected_membership_keys()))
         
     
-    @patch('db.client.connection_string')
-    def test_read(self, connection_string_patch):
-        connection_string_patch.return_value = test_connection_string()
+    def test_read(self):
         client = Client()
         client.execute(populate_database(8))
 
@@ -37,9 +33,7 @@ class DatabaseTest(unittest.TestCase):
         
         self.assertTrue(all(key in as_dict.keys() for key in expected_membership_keys()))
     
-    @patch('db.client.connection_string')
-    def test_read_all(self, connection_string_patch):
-        connection_string_patch.return_value = test_connection_string()
+    def test_read_all(self):
         client = Client()
         client.execute(populate_database(7))
 
@@ -48,9 +42,7 @@ class DatabaseTest(unittest.TestCase):
 
         self.assertTrue(all(key in as_dict.keys() for key in expected_membership_keys()))
     
-    @patch('db.client.connection_string')
-    def test_update(self, connection_string_patch):
-        connection_string_patch.return_value = test_connection_string()
+    def test_update(self):
         client = Client()
         client.execute(populate_database(6))
 
@@ -62,9 +54,7 @@ class DatabaseTest(unittest.TestCase):
 
         self.assertTrue(all(key in as_dict.keys() for key in expected_membership_keys()))
     
-    @patch('db.client.connection_string')
-    def test_delete(self, connection_string_patch):
-        connection_string_patch.return_value = test_connection_string()
+    def test_delete(self):
         client = Client()
         client.execute(populate_database(5))
 
@@ -73,9 +63,7 @@ class DatabaseTest(unittest.TestCase):
 
         self.assertTrue(all(key in as_dict.keys() for key in expected_membership_keys()))
     
-    @patch('db.client.connection_string')
-    def test_update_unique_violation(self, connection_string_patch):
-        connection_string_patch.return_value = test_connection_string()
+    def test_update_unique_violation(self):
         client = Client()
         mock_exception = IntegrityError('', (''), Exception())
 
@@ -83,9 +71,7 @@ class DatabaseTest(unittest.TestCase):
             with self.assertRaises(DatabaseError):
                 client.update(6, self.member)
     
-    @patch('db.client.connection_string')
-    def test_create_unique_violation(self, connection_string_patch):
-        connection_string_patch.return_value = test_connection_string()
+    def test_create_unique_violation(self):
         client = Client()
         mock_exception = IntegrityError('', (''), Exception())
 

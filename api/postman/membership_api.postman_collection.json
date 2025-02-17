@@ -437,7 +437,7 @@
 					"name": "applications",
 					"item": [
 						{
-							"name": "/applications_GET",
+							"name": "/applications",
 							"protocolProfileBehavior": {
 								"disableCookies": false
 							},
@@ -466,7 +466,7 @@
 							"response": []
 						},
 						{
-							"name": "/applications_POST",
+							"name": "/applications",
 							"request": {
 								"method": "POST",
 								"header": [
@@ -478,7 +478,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"firstName\": \"test\",\r\n    \"lastName\": \"test\",\r\n    \"email\": \"test@test.com\",\r\n    \"organisation\": \"test\",\r\n    \"position\": \"test\",\r\n    \"industry\": \"test\",\r\n    \"dob\": \"2000-01-01\",\r\n    \"mobile\": \"1234567890\",\r\n    \"city\": \"test\",\r\n    \"postCode\": \"1234\",\r\n    \"createdAt\": \"2025-01-06\",\r\n    \"id\": \"123\",\r\n    \"howDidYouHearAboutUs\": \"test\"\r\n}",
+									"raw": "{\r\n    \"firstName\": \"test\",\r\n    \"lastName\": \"test\",\r\n    \"email\": \"test@test.com\",\r\n    \"organisation\": \"test\",\r\n    \"position\": \"test\",\r\n    \"industry\": \"test\",\r\n    \"dob\": \"2000-01-01\",\r\n    \"mobile\": \"1234567890\",\r\n    \"city\": \"test\",\r\n    \"postCode\": \"1234\",\r\n    \"createdAt\": \"2025-01-06 08:55:06\",\r\n    \"id\": \"123\",\r\n    \"howDidYouHearAboutUs\": \"test\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -500,7 +500,7 @@
 							"response": []
 						},
 						{
-							"name": "/applications/{id}_DELETE",
+							"name": "/applications/{id}",
 							"request": {
 								"method": "DELETE",
 								"header": [
@@ -542,7 +542,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"firstName\": \"Jenny\",\r\n    \"lastName\": \"Hanson\",\r\n    \"email\": \"jenny.hanson@unsa.com\",\r\n    \"organisation\": \"UNSA\",\r\n    \"position\": \"President\",\r\n    \"industry\": \"Higher Education\",\r\n    \"dob\": \"2000-01-01\",\r\n    \"mobile\": \"1234567890\",\r\n    \"city\": \"Newcastle\",\r\n    \"postCode\": \"1234\"\r\n  }",
+									"raw": "{\r\n    \"firstName\": \"Benny\",\r\n    \"lastName\": \"Hanson\",\r\n    \"email\": \"benny.hanson@unsa.com\",\r\n    \"organisation\": \"UNSA\",\r\n    \"position\": \"President\",\r\n    \"industry\": \"Higher Education\",\r\n    \"dob\": \"2000-01-01\",\r\n    \"mobile\": \"1234567890\",\r\n    \"city\": \"Newcastle\",\r\n    \"postCode\": \"1234\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -550,12 +550,12 @@
 									}
 								},
 								"url": {
-									"raw": "https://{{GATEWAY_ID}}.execute-api.ap-southeast-2.amazonaws.com/{{STAGE}}/membership",
+									"raw": "https://{{GATEWAY_ID}}.execute-api.{{REGION}}.amazonaws.com/{{STAGE}}/membership",
 									"protocol": "https",
 									"host": [
 										"{{GATEWAY_ID}}",
 										"execute-api",
-										"ap-southeast-2",
+										"{{REGION}}",
 										"amazonaws",
 										"com"
 									],
@@ -573,12 +573,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://{{GATEWAY_ID}}.execute-api.ap-southeast-2.amazonaws.com/{{STAGE}}/membership",
+									"raw": "https://{{GATEWAY_ID}}.execute-api.{{REGION}}.amazonaws.com/{{STAGE}}/membership",
 									"protocol": "https",
 									"host": [
 										"{{GATEWAY_ID}}",
 										"execute-api",
-										"ap-southeast-2",
+										"{{REGION}}",
 										"amazonaws",
 										"com"
 									],
@@ -596,19 +596,25 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "https://{{GATEWAY_ID}}.execute-api.ap-southeast-2.amazonaws.com/{{STAGE}}/membership/{{id}}",
+									"raw": "https://{{GATEWAY_ID}}.execute-api.{{REGION}}.amazonaws.com/{{STAGE}}/membership/:id",
 									"protocol": "https",
 									"host": [
 										"{{GATEWAY_ID}}",
 										"execute-api",
-										"ap-southeast-2",
+										"{{REGION}}",
 										"amazonaws",
 										"com"
 									],
 									"path": [
 										"{{STAGE}}",
 										"membership",
-										"{{id}}"
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
 									]
 								}
 							},
@@ -621,7 +627,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n\"firstName\": \"Jenny\",\r\n\"lastName\": \"Hanson\",\r\n\"email\": \"tr34l@newygroup.com.au\",\r\n\"organisation\": \"UNSA\",\r\n\"position\": \"President\",\r\n\"industry\": \"Lower Education\",\r\n\"dob\": \"2000/01/01\",\r\n\"mobile\": \"1234567890\",\r\n\"city\": \"Newcastle\",\r\n\"postCode\": \"5678436\"\r\n}",
+									"raw": "{\r\n\"firstName\": \"Bobby\",\r\n\"lastName\": \"Hanson\",\r\n\"email\": \"tr34l@newygroup.com.au\",\r\n\"organisation\": \"UNSA\",\r\n\"position\": \"President\",\r\n\"industry\": \"Lower Education\",\r\n\"dob\": \"2000-01-01\",\r\n\"mobile\": \"1234567890\",\r\n\"city\": \"Newcastle\",\r\n\"postCode\": \"4567\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -629,19 +635,25 @@
 									}
 								},
 								"url": {
-									"raw": "https://{{GATEWAY_ID}}.execute-api.ap-southeast-2.amazonaws.com/{{STAGE}}/membership/{{id}}",
+									"raw": "https://{{GATEWAY_ID}}.execute-api.{{REGION}}.amazonaws.com/{{STAGE}}/membership/:id",
 									"protocol": "https",
 									"host": [
 										"{{GATEWAY_ID}}",
 										"execute-api",
-										"ap-southeast-2",
+										"{{REGION}}",
 										"amazonaws",
 										"com"
 									],
 									"path": [
 										"{{STAGE}}",
 										"membership",
-										"{{id}}"
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
 									]
 								}
 							},
@@ -653,19 +665,25 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://{{GATEWAY_ID}}.execute-api.ap-southeast-2.amazonaws.com/{{STAGE}}/membership/{{id}}",
+									"raw": "https://{{GATEWAY_ID}}.execute-api.{{REGION}}.amazonaws.com/{{STAGE}}/membership/:id",
 									"protocol": "https",
 									"host": [
 										"{{GATEWAY_ID}}",
 										"execute-api",
-										"ap-southeast-2",
+										"{{REGION}}",
 										"amazonaws",
 										"com"
 									],
 									"path": [
 										"{{STAGE}}",
 										"membership",
-										"{{id}}"
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
 									]
 								}
 							},
@@ -691,12 +709,12 @@
 									}
 								],
 								"url": {
-									"raw": "https://{{GATEWAY_ID}}.execute-api.ap-southeast-2.amazonaws.com/{{STAGE}}/applications",
+									"raw": "https://{{GATEWAY_ID}}.execute-api.{{REGION}}.amazonaws.com/{{STAGE}}/applications",
 									"protocol": "https",
 									"host": [
 										"{{GATEWAY_ID}}",
 										"execute-api",
-										"ap-southeast-2",
+										"{{REGION}}",
 										"amazonaws",
 										"com"
 									],
@@ -721,7 +739,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"httpMethod\": \"POST\",\r\n    \"body\": {\r\n        \"id\": \"1234\",\r\n        \"firstName\": \"John\",\r\n        \"lastName\": \"Doe\",\r\n        \"email\": \"john.doe@example.com\",\r\n        \"organisation\": \"Johns Accounting\",\r\n        \"position\": \"President\",\r\n        \"industry\": \"Accounting\",\r\n        \"dob\": \"2000-01-01\",\r\n        \"mobile\": \"1234567890\",\r\n        \"city\": \"Newcastle\",\r\n        \"postCode\": \"1234\",\r\n        \"createdAt\": \"2025-01-01\"\r\n    }\r\n}",
+									"raw": "{\r\n    \"id\": \"1234\",\r\n    \"firstName\": \"John\",\r\n    \"lastName\": \"Doe\",\r\n    \"email\": \"john.doe@example.com\",\r\n    \"organisation\": \"Johns Accounting\",\r\n    \"position\": \"President\",\r\n    \"industry\": \"Accounting\",\r\n    \"dob\": \"2000-01-01\",\r\n    \"mobile\": \"1234567890\",\r\n    \"city\": \"Newcastle\",\r\n    \"postCode\": \"1234\",\r\n    \"createdAt\": \"2025-01-01 08:55:32\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -729,17 +747,18 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:9002/2015-03-31/functions/function/invocations",
-									"protocol": "http",
+									"raw": "https://{{GATEWAY_ID}}.execute-api.{{REGION}}.amazonaws.com/{{STAGE}}/applications",
+									"protocol": "https",
 									"host": [
-										"localhost"
+										"{{GATEWAY_ID}}",
+										"execute-api",
+										"{{REGION}}",
+										"amazonaws",
+										"com"
 									],
-									"port": "9002",
 									"path": [
-										"2015-03-31",
-										"functions",
-										"function",
-										"invocations"
+										"{{STAGE}}",
+										"applications"
 									]
 								}
 							},
@@ -757,12 +776,12 @@
 									}
 								],
 								"url": {
-									"raw": "https://{{GATEWAY_ID}}.execute-api.ap-southeast-2.amazonaws.com/{{STAGE}}/applications/:id",
+									"raw": "https://{{GATEWAY_ID}}.execute-api.{{REGION}}.amazonaws.com/{{STAGE}}/applications/:id",
 									"protocol": "https",
 									"host": [
 										"{{GATEWAY_ID}}",
 										"execute-api",
-										"ap-southeast-2",
+										"{{REGION}}",
 										"amazonaws",
 										"com"
 									],
@@ -774,7 +793,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "123"
+											"value": "1234"
 										}
 									]
 								}
@@ -838,9 +857,9 @@
 			"type": "default"
 		},
 		{
-			"key": "id",
-			"value": "",
-			"type": "default"
+			"key": "REGION",
+			"value": "us-west-2",
+			"type": "string"
 		}
 	]
 }

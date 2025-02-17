@@ -81,7 +81,7 @@ class Application:
             applicant_data['mobile'],
             applicant_data['city'],
             applicant_data['postCode'],
-            datetime.strptime(applicant_data['createdAt'], "%Y-%m-%d").strftime("%d-%m-%Y")
+            datetime.strptime(applicant_data['createdAt'], "%Y-%m-%d %H:%M:%S").strftime("%d-%m-%Y %H:%M:%S")
         )
     
     @classmethod

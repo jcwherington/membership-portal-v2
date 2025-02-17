@@ -17,11 +17,11 @@ class ApplicationTest(unittest.TestCase):
         self.assertEqual(application.organisation, 'Johns Accounting')
         self.assertEqual(application.position, 'President')
         self.assertEqual(application.industry, 'Accounting')
-        self.assertEqual(application.dob, '1994-02-16')
+        self.assertEqual(application.dob, '16-02-1994')
         self.assertEqual(application.mobile, '0401999464')
         self.assertEqual(application.city, 'Newcastle')
         self.assertEqual(application.post_code, '1234')
-        self.assertEqual(application.created_at, '2023-07-16 06:34:00')
+        self.assertEqual(application.created_at, '16-07-2023 06:34:00')
     
     def test_to_dynamo(self):
         event = test_event()
@@ -35,11 +35,11 @@ class ApplicationTest(unittest.TestCase):
         self.assertEqual(dynamo_entry['organisation']['S'], 'Johns Accounting')
         self.assertEqual(dynamo_entry['position']['S'], 'President')
         self.assertEqual(dynamo_entry['industry']['S'], 'Accounting')
-        self.assertEqual(dynamo_entry['dob']['S'], '1994-02-16')
+        self.assertEqual(dynamo_entry['dob']['S'], '16-02-1994')
         self.assertEqual(dynamo_entry['mobile']['S'], '0401999464')
         self.assertEqual(dynamo_entry['city']['S'], 'Newcastle')
         self.assertEqual(dynamo_entry['post_code']['S'], '1234')
-        self.assertEqual(dynamo_entry['created_at']['S'], '2023-07-16 06:34:00')
+        self.assertEqual(dynamo_entry['created_at']['S'], '16-07-2023 06:34:00')
     
     def test_from_dynamo(self):
         dynamo_entry = test_dynamo_entry()
@@ -52,11 +52,11 @@ class ApplicationTest(unittest.TestCase):
         self.assertEqual(application['organisation'], 'Johns Accounting')
         self.assertEqual(application['position'], 'President')
         self.assertEqual(application['industry'], 'Accounting')
-        self.assertEqual(application['dob'], '1994-02-16')
+        self.assertEqual(application['dob'], '16-02-1994')
         self.assertEqual(application['mobile'], '0401999464')
         self.assertEqual(application['city'], 'Newcastle')
         self.assertEqual(application['postCode'], '1234')
-        self.assertEqual(application['createdAt'], '2023-07-16 06:34:00')
+        self.assertEqual(application['createdAt'], '16-07-2023 06:34:00')
 
 if __name__ == '__main__':
     unittest.main()

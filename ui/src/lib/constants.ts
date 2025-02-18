@@ -1,6 +1,6 @@
-export const DATE_FORMAT = 'YYYY-MM-DD';
+export const DATE_FORMAT = 'DD-MM-YYYY';
 
-export const TIMESTAMP_FORMAT = 'YYYY-MM-DD HH:MM:ss';
+export const TIMESTAMP_FORMAT = 'DD-MM-YYYY HH:MM:ss';
 
 export const INDUSTRIES = [
     "Accounting",

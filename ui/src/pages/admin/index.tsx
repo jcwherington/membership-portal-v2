@@ -1,7 +1,6 @@
 import styles from '@/styles/Table.module.css';
 import DataTable from 'react-data-table-component';
 import useSWR, {SWRResponse} from 'swr'
-import dayjs from 'dayjs';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useRouter, NextRouter } from 'next/router';
 import { useState, useEffect } from 'react';
@@ -10,6 +9,7 @@ import { fetchMembers, deleteMember } from '@/lib/api/membership';
 import TableSubHeaderComponent from '@/components/TableSubHeader';
 import SmallButton from '@/components/buttons/SmallButton';
 import ErrorComponent from '@/components/Error';
+import { format } from '@/lib/date';
 
 export default function Applications() {
     const router: NextRouter = useRouter()
@@ -75,7 +75,7 @@ export default function Applications() {
         },
         {
             name: 'DOB',
-            selector: (row: Member) => row.getDOB(),
+            selector: (row: Member) => format(row.getDOB(), 'LL'),
             sortable: true
         },
         {

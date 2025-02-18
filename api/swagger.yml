@@ -530,5 +530,3 @@ definitions:
         type: "string"
       createdAt:
         type: "string"
-      howDidYouHearAboutUs:
-        type: "string"

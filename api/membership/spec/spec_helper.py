@@ -34,7 +34,7 @@ def test_body():
         "organisation": "Johns Accounting",
         "position": "President",
         "industry": "Accounting",
-        "dob": "2000-01-01",
+        "dob": "01-01-2000",
         "mobile": "0401999464",
         "city": "Newcastle",
         "postCode": "1234"
@@ -65,7 +65,7 @@ def test_tuple():
         'Johns Accounting',
         'President',
         'Accounting',
-        '2000-01-01', 
+        '01-01-2000', 
         '0401999464',
         'Newcastle',
         '1234',

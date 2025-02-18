@@ -89,7 +89,7 @@ def validate_body(body):
     
     try:
         if body['dob']:
-            datetime.strptime(body['dob'], '%Y-%m-%d')
+            datetime.strptime(body['dob'], '%d-%m-%Y')
     except (ValueError, TypeError):
         invalid_params.append('dob')
     

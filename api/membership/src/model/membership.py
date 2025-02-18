@@ -1,7 +1,6 @@
 from dataclasses import dataclass, fields
 from datetime import datetime, date
 import humps
-import pytz
 
 
 @dataclass
@@ -126,8 +125,8 @@ class Membership:
             member_data['mobile'],
             member_data['city'],
             member_data['postCode'],
-            str(datetime.now(pytz.timezone('Australia/Sydney'))),
-            str(datetime.now(pytz.timezone('Australia/Sydney')))
+            str(datetime.now()),
+            str(datetime.now())
         )
     
     @classmethod

@@ -1,5 +1,5 @@
-import { format } from '@/lib/date';
-import { TIMESTAMP_FORMAT } from '@/lib/constants';
+import { DATE_FORMAT, TIMESTAMP_FORMAT } from '@/lib/constants';
+import dayjs from 'dayjs';
 
 class Applicant {
     private readonly id: number
@@ -27,7 +27,7 @@ class Applicant {
         this.city = props.city;
         this.mobile = props.mobile;
         this.postCode = props.postCode;
-        this.createdAt = format(props.createdAt, TIMESTAMP_FORMAT);
+        this.createdAt = dayjs(props.createdAt).format(TIMESTAMP_FORMAT);
     }
 
     getId() {
@@ -59,9 +59,9 @@ class Applicant {
     }
     
     getDOB() {
-        return this.dob;
+        return dayjs(this.dob, DATE_FORMAT);
     }
-    
+
     getCity() {
         return this.city;
     }

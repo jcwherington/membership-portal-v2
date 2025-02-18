@@ -9,7 +9,6 @@ import { fetchMembers, deleteMember } from '@/lib/api/membership';
 import TableSubHeaderComponent from '@/components/TableSubHeader';
 import SmallButton from '@/components/buttons/SmallButton';
 import ErrorComponent from '@/components/Error';
-import { format } from '@/lib/date';
 
 export default function Applications() {
     const router: NextRouter = useRouter()
@@ -75,7 +74,7 @@ export default function Applications() {
         },
         {
             name: 'DOB',
-            selector: (row: Member) => format(row.getDOB(), 'LL'),
+            selector: (row: Member) => row.getDOB().format('LL'),
             sortable: true
         },
         {

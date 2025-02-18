@@ -10,7 +10,6 @@ import Applicant from '@/model/applicant';
 import SmallButton from '@/components/buttons/SmallButton';
 import Member from '@/model/member';
 import ErrorComponent from '@/components/Error';
-import { format } from '@/lib/date';
 
 export default function Applications() {
     const router: NextRouter = useRouter();
@@ -90,7 +89,7 @@ export default function Applications() {
         },
         {
             name: 'DOB',
-            selector: (row: Applicant) => format(row.getDOB(), 'LL'),
+            selector: (row: Applicant) => row.getDOB().format('LL'),
         },
         {
             name: 'City',

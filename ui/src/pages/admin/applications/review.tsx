@@ -1,6 +1,5 @@
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { useEffect } from 'react';
-import dayjs from 'dayjs';
 import { DateField } from '@mui/x-date-pickers';
 import { INDUSTRIES, DATE_FORMAT } from '@/lib/constants';
 import styles from '@/styles/Form.module.css';
@@ -42,7 +41,7 @@ export default function Review() {
                 position: applicant.getPosition(),
                 industry: applicant.getIndustry(),
                 email: applicant.getEmail(),
-                dob: dayjs(applicant.getDOB(), { format: DATE_FORMAT }),
+                dob: applicant.getDOB(),
                 city: applicant.getCity(),
                 mobile: applicant.getMobile(),
                 postCode: applicant.getPostCode()

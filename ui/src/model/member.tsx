@@ -1,4 +1,3 @@
-import { format } from '@/lib/date';
 import { DATE_FORMAT, TIMESTAMP_FORMAT } from '@/lib/constants';
 import dayjs from 'dayjs';
 
@@ -25,12 +24,12 @@ class Member {
         this.position = props.position;
         this.industry = props.industry;
         this.email = props.email;
-        this.dob = this.parseDob(props.dob);
+        this.dob = dayjs.isDayjs(props.dob) ? props.dob.format(DATE_FORMAT) : props.dob;
         this.city = props.city;
         this.mobile = props.mobile;
         this.postCode = props.postCode;
-        this.createdAt = format(props.createdAt, TIMESTAMP_FORMAT);
-        this.updatedAt = format(props.updatedAt, TIMESTAMP_FORMAT);
+        this.createdAt = dayjs(props.createdAt).format(TIMESTAMP_FORMAT);
+        this.updatedAt = dayjs(props.updatedAt).format(TIMESTAMP_FORMAT);
     }
 
     getId() {
@@ -60,11 +59,11 @@ class Member {
     getEmail() {
         return this.email;
     }
-    
+  
     getDOB() {
-        return this.dob;
+        return dayjs(this.dob, DATE_FORMAT);
     }
-    
+
     getCity() {
         return this.city;
     }
@@ -83,14 +82,6 @@ class Member {
     
     getDateUpdated() {
         return this.updatedAt;
-    }
-
-    parseDob(dob) {
-        if(!dayjs.isDayjs(dob)) {
-            return dob;
-        }
-
-        return dob.isValid() ? dob.format(DATE_FORMAT) : null;
     }
 
     getName() {

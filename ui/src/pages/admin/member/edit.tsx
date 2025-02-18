@@ -6,7 +6,6 @@ import Member from '@/model/member';
 import { INDUSTRIES, DATE_FORMAT } from '@/lib/constants';
 import { updateMember } from '@/lib/api/membership';
 import CircularProgress from '@mui/material/CircularProgress';
-import dayjs from 'dayjs';
 import { DateField } from '@mui/x-date-pickers';
 import ErrorComponent from '@/components/Error';
 import LargeButton from '@/components/buttons/LargeButton';
@@ -33,7 +32,7 @@ export default function Edit() {
                 position: member.getPosition(),
                 industry: member.getIndustry(),
                 email: member.getEmail(),
-                dob: dayjs(member.getDOB(), { format: DATE_FORMAT }),
+                dob: member.getDOB(),
                 city: member.getCity(),
                 mobile: member.getMobile(),
                 postCode: member.getPostCode(),

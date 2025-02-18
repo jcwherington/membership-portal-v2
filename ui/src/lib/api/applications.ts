@@ -15,11 +15,9 @@ async function handler(url: string, method: string, payload=null) {
 
     if (local()) {
         const body = JSON.parse(result.data?.body);
-        console.log(result);
         return {
             status: result.status,
-            data:   body.data,
-            message: body.message
+            data:   body
         }
     }
 

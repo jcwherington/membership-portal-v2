@@ -1,6 +1,5 @@
 import re
 from datetime import datetime
-
 from common.error import ValidationError
 
 

@@ -1,6 +1,7 @@
 import styles from '@/styles/Login.module.css';
-import { Button } from "@mui/material"
-import Image from 'next/image'
+import { Button } from "@mui/material";
+import Image from 'next/image';
+import Logo from '../../public/logo-placeholder-image.png';
 
 const Login = (props: {handler: any}): JSX.Element => {
 
@@ -8,7 +9,7 @@ const Login = (props: {handler: any}): JSX.Element => {
         <div className={styles.container}>
             <form onSubmit={props.handler} className={styles.form}>
                 <div className={styles.logo}>
-                    <Image src="logo-placeholder-image.png" alt="Logo" />
+                    <Image src={Logo} alt="Logo" width={70}/>
                 </div>    
                 <div className={styles.formRow}>
                     <label htmlFor="username">Username</label>

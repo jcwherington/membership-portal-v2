@@ -1,12 +1,13 @@
 import styles from '@/styles/NavBar.module.css';
-import Link from 'next/link'
-import Image from 'next/image'
+import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter, NextRouter } from 'next/router';
-import cookieCutter from 'cookie-cutter'
+import cookieCutter from 'cookie-cutter';
 import SmallButton from './buttons/SmallButton';
+import Logo from '../../public/logo-placeholder-image.png';
 
 const NavBar = ({ children }): JSX.Element => {
-    const router: NextRouter = useRouter()
+    const router: NextRouter = useRouter();
     const logout: Function = () => {
         cookieCutter.set('token', '', { expires: new Date(0) });
         router.push('/index.html');
@@ -16,7 +17,7 @@ const NavBar = ({ children }): JSX.Element => {
         <div>
             <nav className={styles.navbar}>
                 <div className={styles.logo}>
-                    <Image src="logo-placeholder-image.png" alt="Logo" />
+                    <Image src={Logo} alt="Logo" width={60}/>
                 </div>
                 <ul className={styles.navLinks}>
                     <li><Link href="/admin.html">Members</Link></li>

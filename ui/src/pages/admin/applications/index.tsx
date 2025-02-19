@@ -17,11 +17,7 @@ export default function Applications() {
 
     const { data, error } = useSWR(['asd'], fetchApplications)
 
-    if (error) {
-        setErrorMessage(error.message)
-        return <ErrorComponent message={errorMessage}/>
-    }
-
+    if (error) return <ErrorComponent message={errorMessage}/>;
     if (!data) return <CircularProgress />;
 
     const applicantsList: Applicant[] = data.data.data.map((entry: any) => {

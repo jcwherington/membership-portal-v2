@@ -16,7 +16,7 @@ const NavBar = ({ children }): JSX.Element => {
         <div>
             <nav className={styles.navbar}>
                 <div className={styles.logo}>
-                    <Image src="<logo_image>" alt="Logo" />
+                    <Image src="logo-placeholder-image.png" alt="Logo" />
                 </div>
                 <ul className={styles.navLinks}>
                     <li><Link href="/admin.html">Members</Link></li>

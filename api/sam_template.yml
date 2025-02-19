@@ -41,7 +41,7 @@ Resources:
     Properties:
       FunctionName: !Sub membership-api-handler-${Branch}
       Handler: app.handler
-      Runtime: python3.8
+      Runtime: python3.13
       Role: !GetAtt MembershipApiLambdaRole.Arn
       CodeUri:
         Bucket: !Ref Bucket
@@ -80,7 +80,7 @@ Resources:
     Properties:
       FunctionName: !Sub application-api-handler-${Branch}
       Handler: app.handler
-      Runtime: python3.8
+      Runtime: python3.13
       Role: !GetAtt MembershipApiLambdaRole.Arn
       CodeUri:
         Bucket: !Ref Bucket

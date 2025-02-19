@@ -1,4 +1,4 @@
-FROM python:3.8 AS base
+FROM python:3.13 AS base
 
 WORKDIR /app
 COPY requirements.txt requirements.txt

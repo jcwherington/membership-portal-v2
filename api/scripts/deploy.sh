@@ -31,7 +31,7 @@ DB_PASSWORD=$(aws ssm get-parameter --name mpv2-db-password --query "Parameter.V
 
 # Deploy the membership api stack
 # Update the stack or create it if it doesn't already exist
-if aws cloudformation describe-stacks --stack-name $STACK_NAME; then
+if aws cloudformation describe-stacks --stack-name $STACK_NAME 2>/dev/null; then
     echo "Updating stack $STACK_NAME"
     aws cloudformation update-stack \
         --stack-name $STACK_NAME \

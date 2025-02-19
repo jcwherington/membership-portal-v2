@@ -2,24 +2,18 @@ from common.error import ValidationError
 
 HTTP_METHODS = ['GET', 'POST', 'DELETE']
 
-def validate_event(event):
-    if event['httpMethod'] not in HTTP_METHODS:
-        raise ValidationError('Invalid HTTP method')
-    
-    try:
-        if event['httpMethod'] == 'GET':
+def validate_event(event):   
+    match event['httpMethod']:
+        case 'GET':
             return
-
-        elif event['httpMethod'] == 'POST':
+        case 'POST':
             validate_post(event)
             return
-
-        elif event['httpMethod'] == 'DELETE':
+        case 'DELETE':
             validate_delete(event)
             return
-    
-    except (KeyError, ValueError, TypeError):
-        raise ValidationError('Invalid event object')
+        case _:
+            raise ValidationError('Invalid HTTP method')
 
 def validate_post(event):
     if not event['body']:

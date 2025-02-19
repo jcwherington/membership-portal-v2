@@ -25,12 +25,13 @@ def branch():
     return os.getenv('BRANCH')
 
 def schema():
-    if branch() == 'local':
-        return 'local'
-    elif branch() == 'main':
-        return 'prod'
-    else:
-        return 'test'
+    match branch():
+        case 'local':
+            return 'local'
+        case 'main':
+            return 'prod'
+        case _:
+            return 'test'
 
 def logger():
     logging.basicConfig(

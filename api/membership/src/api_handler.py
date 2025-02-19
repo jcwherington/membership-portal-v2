@@ -7,21 +7,17 @@ def handle_event(event):
     db_client = Client()
 
     try:
-        if event['httpMethod'] == 'GET':
-            return handle_get(event, db_client)
-
-        elif event['httpMethod'] == 'POST':  
-            return handle_post(event, db_client)
-
-        elif event['httpMethod'] == 'PUT':
-            return handle_put(event, db_client)
-
-        elif event['httpMethod'] == 'DELETE':
-            return handle_delete(event, db_client)
-
-        else:
-            raise ValidationError('Invalid HTTP method')
-    
+        match event['httpMethod']:
+            case 'GET':
+                return handle_get(event, db_client)
+            case 'POST':
+                return handle_post(event, db_client)
+            case 'PUT':
+                return handle_put(event, db_client)
+            case 'DELETE':
+                return handle_delete(event, db_client)
+            case _:
+                raise ValidationError('Invalid HTTP method')
     finally:
         db_client.close_connection()
 

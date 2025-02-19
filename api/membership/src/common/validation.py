@@ -3,29 +3,25 @@ from datetime import datetime
 
 from common.error import ValidationError
 
-HTTP_METHODS = ['GET', 'POST', 'PUT', 'DELETE']
 
-def validate_event(event):
-    if event['httpMethod'] not in HTTP_METHODS:
-        raise ValidationError('invalid HTTP method')
-    
+def validate_event(event):    
     try:
-        if event['httpMethod'] == 'GET':
-            validate_get(event)
-            return
-
-        elif event['httpMethod'] == 'POST':
-            validate_post(event)
-            return
-
-        elif event['httpMethod'] == 'PUT':
-            validate_put(event)
-            return
-
-        elif event['httpMethod'] == 'DELETE':
-            validate_delete(event)
-            return
-    
+        match event['httpMethod']:
+            case 'GET':
+                validate_get(event)
+                return
+            case 'POST':
+                validate_post(event)
+                return
+            case 'PUT':
+                validate_put(event)
+                return
+            case 'DELETE':
+                validate_delete(event)
+                return
+            case _:
+                raise ValidationError('invalid HTTP method')
+            
     except (KeyError, ValueError, TypeError):
         raise ValidationError('invalid event object')
 

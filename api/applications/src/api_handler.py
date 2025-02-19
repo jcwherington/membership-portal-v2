@@ -6,19 +6,18 @@ from common.error import ValidationError
 def handle_event(event):      
     dynamo = Dynamo()
 
-    if event['httpMethod'] == 'GET':
-        return handle_get(dynamo)
+    match event['httpMethod']:
+        case 'GET':
+            return handle_get(dynamo)
+        case 'POST':
+            handle_post(event, dynamo)
+            return
+        case 'DELETE':
+            handle_delete(event, dynamo)
+            return
+        case _:
+            raise ValidationError('Invalid HTTP method')
 
-    elif event['httpMethod'] == 'POST':  
-        handle_post(event, dynamo)
-        return
-
-    elif event['httpMethod'] == 'DELETE':
-        handle_delete(event, dynamo)
-        return
-
-    else:
-        raise ValidationError('Invalid HTTP method')
     
 def handle_get(dynamo):
     result = dynamo.get_items()

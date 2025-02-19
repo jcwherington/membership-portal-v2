@@ -20,12 +20,12 @@ def test_event():
             'position': 'President', 
             'industry': 'Accounting',
             'mobile': '0401999464',
-            'dob': '1994-02-16',
+            'dob': '16-02-1994',
             'city': 'Newcastle',
             'postCode': '1234',
             'email': 'john.doe@example.com',
             'id': '2268',
-            'createdAt': '2023-07-16 06:34:00'
+            'createdAt': '16-07-2023 06:34:00'
         }
     }
 

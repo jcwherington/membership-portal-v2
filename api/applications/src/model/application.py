@@ -1,7 +1,6 @@
 from dataclasses import dataclass
 from datetime import datetime
 
-
 @dataclass
 class Application:
     _id: int
@@ -77,11 +76,11 @@ class Application:
             applicant_data['organisation'],
             applicant_data['position'],
             applicant_data['industry'],
-            datetime.strptime(applicant_data['dob'], "%Y-%m-%d").strftime("%d-%m-%Y"),
+            applicant_data['dob'],
             applicant_data['mobile'],
             applicant_data['city'],
             applicant_data['postCode'],
-            datetime.strptime(applicant_data['createdAt'], "%Y-%m-%d %H:%M:%S").strftime("%d-%m-%Y %H:%M:%S")
+            applicant_data['createdAt']
         )
     
     @classmethod

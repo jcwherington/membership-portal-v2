@@ -37,6 +37,20 @@ class EventValidationTest(unittest.TestCase):
         with self.assertRaises(ValidationError):
             validate_event(self.event)
 
+    def test_POST_invalid_dob_value(self):
+        self.event['httpMethod'] = 'POST'
+        self.event['body']['dob'] = ''
+
+        with self.assertRaises(ValidationError):
+            validate_event(self.event)
+
+    def test_POST_invalid_createdAt_value(self):
+        self.event['httpMethod'] = 'POST'
+        self.event['body']['createdAt'] = ''
+
+        with self.assertRaises(ValidationError):
+            validate_event(self.event)
+
     # DELETE
 
     def test_DELETE_missing_path_parameter(self):

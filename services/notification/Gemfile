@@ -1,0 +1,6 @@
+source 'http://rubygems.org'
+ruby '3.2.6'
+
+gem 'aws-sdk-ses'
+gem 'aws-sdk-s3'
+gem 'rspec'

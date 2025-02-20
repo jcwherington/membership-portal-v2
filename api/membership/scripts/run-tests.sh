@@ -1,6 +1,5 @@
 #!/bin/bash
 set -eou pipefail
-rm -rf *zip
 
 function on_error
 {

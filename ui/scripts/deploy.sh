@@ -1,4 +1,5 @@
 #!/bin/bash
+set -eou pipefail
 
 BRANCH=$(git branch --show-current)
 S3_BUCKET="mpv2-static-$BRANCH"

@@ -1,4 +1,5 @@
 #!/bin/bash
+set -eou pipefail
 
 AWS_REGION=us-west-2
 BRANCH=$(git branch --show-current)

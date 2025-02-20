@@ -1,0 +1,64 @@
+<html>
+  <head>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+      }
+
+      .email-container {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        color: #333;
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 10px;
+      }
+
+      .outcome {
+        font-weight: bold;
+        color: #007BFF;
+      }
+
+      .footer {
+        margin-top: 20px;
+        font-size: 14px;
+        color: #777;
+      }
+
+      .footer a {
+        color: #007BFF;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="email-container">
+      <h1>Hello {{ name }}</h1>
+      <p>Your application to mpv2 has been <span class="outcome">{{ outcome }}</span></p>
+      
+      <p>Best regards,</p>
+      <p>The Team</p>
+
+      <div class="footer">
+        <p>If you have any questions, feel free to <a href="mailto:support@example.com">contact us</a>.</p>
+      </div>
+    </div>
+  </body>
+</html>

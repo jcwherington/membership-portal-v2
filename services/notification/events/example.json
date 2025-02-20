@@ -14,7 +14,7 @@
         "MessageAttributes": {
             "Recipient": {
               "Type": "String",
-              "Value": "jakecwherington@gmail.com"
+              "Value": "example@example.com"
             },
             "Outcome": {
               "Type": "String",

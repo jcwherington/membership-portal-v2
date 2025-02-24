@@ -4,4 +4,7 @@ ruby '3.2.7'
 gem 'aws-sdk-ses'
 gem 'aws-sdk-s3'
 gem 'liquid', '4.0.4'
-gem 'rspec'
+
+group :test do
+  gem 'rspec'
+end

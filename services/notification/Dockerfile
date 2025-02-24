@@ -5,7 +5,7 @@ WORKDIR /var/task
 
 COPY Gemfile ./
 RUN bundle config set --local path 'vendor/bundle' && \
-    bundle install
+    bundle install --without test
 COPY src templates ./
 
 CMD ["app.handler"]

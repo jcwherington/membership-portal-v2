@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'aws-sdk-ses'
 require_relative '../config'
 require_relative '../common/error'

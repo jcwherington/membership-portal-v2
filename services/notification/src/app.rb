@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'liquid'
 require_relative 'services/ses'
 require_relative 'services/s3'

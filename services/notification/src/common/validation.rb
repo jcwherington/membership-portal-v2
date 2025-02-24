@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+require 'uri'
 require_relative 'error'
 require_relative 'constants'
 

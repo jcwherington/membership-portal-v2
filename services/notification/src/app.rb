@@ -1,9 +1,15 @@
 require_relative 'services/ses'
 require_relative 'services/s3'
 # require_relative 'common/validation'
+require_relative 'config'
 require 'liquid'
 
 def handler(event:, context:)
+
+    logger = logger()
+    logger.info(event)
+
+    # validate_event(event)
 
     message_attributes = event['Records'][0]['Sns']['MessageAttributes']
 

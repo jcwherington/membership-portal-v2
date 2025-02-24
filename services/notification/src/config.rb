@@ -1,3 +1,5 @@
+require 'logger'
+
 def region
     'us-west-2'
 end
@@ -20,4 +22,8 @@ end
 
 def template_path
     local() ? './outcome_email.html' : "outcome_email_#{stage()}"
+end
+
+def logger
+    Logger.new($stdout)
 end

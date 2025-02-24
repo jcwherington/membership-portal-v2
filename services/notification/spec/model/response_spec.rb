@@ -4,8 +4,9 @@ require_relative '../../src/model/response'
 
 RSpec.describe Response do
   describe "resolve" do
+    let(:response) { Response.new(200, 'message') }
+
     it "returns a response object" do
-      response = Response.new(200, 'message')
       expected_result = { statusCode: 200, body: 'message' }
 
       expect(response.resolve).to eq(expected_result)

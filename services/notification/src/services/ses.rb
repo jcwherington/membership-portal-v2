@@ -1,5 +1,6 @@
 require 'aws-sdk-ses'
 require_relative '../config'
+require_relative '../common/error'
 
 class Ses
   def initialize
@@ -26,9 +27,8 @@ class Ses
 
     begin
       response = @client.send_email(email_params)
-      puts "Email sent successfully! Message ID: #{response}"
     rescue Aws::SES::Errors::ServiceError => error
-      puts "Failed to send email: #{error.message}"
+      raise ServiceError.new(error.message)
     end
   end
 end

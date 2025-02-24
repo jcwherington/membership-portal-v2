@@ -1,5 +1,6 @@
 require 'aws-sdk-s3'
 require_relative '../config'
+require_relative '../common/error'
 
 class S3
   def initialize
@@ -15,7 +16,7 @@ class S3
 
       response.body.read
     rescue Aws::S3::Errors::ServiceError => error
-      puts "Failed to get template: #{error.message}"
+      raise ServiceError.new(error.message)
     end
   end
 end

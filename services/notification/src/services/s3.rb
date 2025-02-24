@@ -9,11 +9,11 @@ class S3
 
   def get_template
     begin
-      puts File.read(@template).inspect
       return File.read(@template) if local()
 
       response = @client.get_object(bucket: template_bucket(), key: @template)
-      return response.body.read
+
+      response.body.read
     rescue Aws::S3::Errors::ServiceError => error
       puts "Failed to get template: #{error.message}"
     end

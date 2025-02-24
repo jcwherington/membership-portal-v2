@@ -4,11 +4,13 @@ require_relative 'services/s3'
 require 'liquid'
 
 def handler(event:, context:)
-    recipient = event['Records'][0]['Sns']['MessageAttributes']['Recipient']['Value']
 
+    message_attributes = event['Records'][0]['Sns']['MessageAttributes']
+
+    recipient = message_attributes['Recipient']['Value']
     template_variables = {
-        'name' => event['Records'][0]['Sns']['MessageAttributes']['Name']['Value'],
-        'outcome' => event['Records'][0]['Sns']['MessageAttributes']['Outcome']['Value']
+        'name' => message_attributes['Name']['Value'],
+        'outcome' => message_attributes['Outcome']['Value']
     }
 
     s3 = S3.new

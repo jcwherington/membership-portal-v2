@@ -28,7 +28,7 @@ class Ses
     }
 
     begin
-      response = @client.send_email(email_params)
+      @client.send_email(email_params)
     rescue Aws::SES::Errors::ServiceError => error
       raise ServiceError.new(error.message)
     end

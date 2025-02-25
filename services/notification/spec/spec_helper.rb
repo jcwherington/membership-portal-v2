@@ -21,3 +21,7 @@ end
 def test_email_template
   File.read('templates/outcome_email.html')
 end
+
+def test_template_path
+  'templates/outcome_email.html'
+end

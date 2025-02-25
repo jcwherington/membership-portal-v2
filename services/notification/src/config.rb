@@ -15,7 +15,7 @@ def sender
 end
 
 def template_bucket
-    'mpv2-email-templates'
+    ENV['TEMPLATE_BUCKET']
 end
 
 def local
@@ -23,7 +23,7 @@ def local
 end
 
 def template_path
-    local() ? './outcome_email.html' : "outcome_email_#{branch()}"
+    local() ? './outcome_email.html' : "outcome_email_#{branch()}.html"
 end
 
 def logger

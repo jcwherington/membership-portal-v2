@@ -1,0 +1,99 @@
+AWSTemplateFormatVersion : '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: A sample SAM template for deploying Lambda functions.
+
+Parameters:
+  NotificationSrcObjectKey:
+    Type: String
+    Description: S3 object key of the notification lambda code .zip file
+  LambdaBucket:
+    Type: String
+    Description: Lambda source code bucket
+  TemplateBucket:
+    Type: String
+    Description: Email template bucket
+  Branch:
+    Type: String
+    Default: "main"
+    Description: Environment lambda is deployed in
+  Sender:
+    Type: String
+    Description: Sender email
+
+Resources:
+  NotificationLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub notification-handler-${Branch}
+      Handler: app.handler
+      Runtime: ruby3.2
+      Role: !GetAtt NotificationLambdaRole.Arn
+      CodeUri:
+        Bucket: !Ref LambdaBucket
+        Key: !Ref NotificationSrcObjectKey
+      MemorySize: 128
+      Timeout: 30
+      Environment:
+        Variables:
+          BRANCH: !Ref Branch
+          SENDER: !Ref Sender
+          TEMPLATE_BUCKET: !Ref TemplateBucket
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+
+  NotificationLambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub NotificationLambdaRole-${Branch}
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      Policies:
+        - PolicyName: EmailPermissions
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - s3:GetObject
+                  - s3:ListBucket
+                Resource:
+                  - !Sub arn:aws:s3:::${TemplateBucket}/*
+                  - !Sub arn:aws:s3:::${TemplateBucket}
+              - Effect: Allow
+                Action:
+                  - ses:SendEmail
+                  - ses:SendRawEmail
+                Resource:
+                  - !Sub arn:aws:ses:${AWS::Region}:${AWS::AccountId}:identity/*
+
+  OutcomeTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      TopicName: !Sub Outcome-${Branch}
+
+  OutcomeTopicSubscription:
+    Type: AWS::SNS::Subscription
+    Properties:
+      Protocol: lambda
+      Endpoint: !GetAtt NotificationLambda.Arn
+      TopicArn: !Ref OutcomeTopic
+
+  NotificationLambdaInvokePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref NotificationLambda
+      Principal: sns.amazonaws.com
+      SourceArn: !Ref OutcomeTopic

@@ -2,6 +2,18 @@
 
 require 'json'
 
+RSpec.configure do |config|
+  config.before(:each) do
+    logger = Logger.new('/dev/null')
+
+    allow_any_instance_of(Logger).to receive(:info)
+    allow_any_instance_of(Logger).to receive(:debug)
+    allow_any_instance_of(Logger).to receive(:warn)
+    allow_any_instance_of(Logger).to receive(:error)
+    allow_any_instance_of(Logger).to receive(:fatal)
+  end
+end
+
 def test_event
   JSON.parse(File.read('events/example.json'))
 end

@@ -11,8 +11,6 @@ RSpec.describe 'validation' do
   end
 
   describe 'validate_event' do
-    let(:modified_event) { @event.dup }
-
     context 'with a valid event object' do
       it 'does not raise a validation error' do
         expect { validate_event(event: @event) }.not_to raise_error
@@ -20,6 +18,8 @@ RSpec.describe 'validation' do
     end
 
     context 'with an invalid event object' do
+      let(:modified_event) { @event.dup }
+
       it 'raises a validation error when Records key is missing' do
         modified_event.delete('Records')
 
@@ -41,8 +41,6 @@ RSpec.describe 'validation' do
   end
 
   describe 'validate_message_attributes' do
-    let(:modified_message_attributes) { @message_attributes.dup }
-    
     context 'with a valid MessageAttributes object' do
       it 'does not raise a validation error' do
         expect { validate_message_attributes(message_attributes: @message_attributes) }.not_to raise_error
@@ -50,6 +48,8 @@ RSpec.describe 'validation' do
     end
 
     context 'with an invalid MessageAttributes object' do
+      let(:modified_message_attributes) { @message_attributes.dup }
+
       it 'raises a validation error when Recipient key is missing' do
         modified_message_attributes.delete('Recipient')
 

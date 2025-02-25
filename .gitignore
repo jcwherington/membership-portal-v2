@@ -1,3 +1,12 @@
+# api
+
+api/membership/build/*.zip
+api/applications/build/*.zip
+
+#services
+
+services/notification/build/*.zip
+
 # ui
 
 ui/node_modules
@@ -7,7 +16,3 @@ ui/.next
 ui/next-env.d.ts
 ui/.env*
 ui/build
-
-# api
-
-api/*.zip

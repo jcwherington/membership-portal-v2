@@ -15,4 +15,4 @@ CMD ["/bin/sh", "-c", "python3 -m unittest discover spec '*_test.py'"]
 FROM base AS bundle
 
 RUN apt-get update && apt-get install zip -y --no-install-recommends && apt-get clean
-CMD ["/bin/sh", "-c", "cd src && zip -q -r ../out/membership-api.zip . -x '*/extenstions/* '*/ext/*'' '*/cache/*'' '*/test/*'' '*/spec/*'"]
+CMD ["/bin/sh", "-c", "cd src && zip -q -r ../build/membership-api.zip . -x '*/extenstions/* '*/ext/*'' '*/cache/*'' '*/test/*'' '*/spec/*'"]

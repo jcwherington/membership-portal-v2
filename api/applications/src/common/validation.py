@@ -25,13 +25,11 @@ def validate_post(event):
         raise ValidationError('Invalid \'id\' in body')
     
     try:
-        logger().info(event['body']['dob'])
         datetime.strptime(event['body']['dob'], "%d-%m-%Y")
     except ValueError:
         raise ValidationError('Invalid \'dob\' in body')
     
     try:
-        logger().info(event['body']['createdAt'])
         datetime.strptime(event['body']['createdAt'], "%d-%m-%Y %H:%M:%S")
     except ValueError:
         raise ValidationError('Invalid \'createdAt\' in body')

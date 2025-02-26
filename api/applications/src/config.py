@@ -15,6 +15,9 @@ def table_name():
 def dynamo_endpoint():
     return os.getenv('DYNAMO_ENDPOINT')
 
+def sns_topic_arn():
+    return os.getenv('SNS_TOPIC_ARN')
+
 def logger():
     logging.basicConfig(
         stream=sys.stdout, 

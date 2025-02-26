@@ -1,14 +1,11 @@
 # api
-
-api/membership/build/*.zip
-api/applications/build/*.zip
+api/membership/build
+api/applications/build
 
 #services
-
-services/notification/build/*.zip
+services/notification/build
 
 # ui
-
 ui/node_modules
 ui/package-lock.json
 ui/out
@@ -16,3 +13,6 @@ ui/.next
 ui/next-env.d.ts
 ui/.env*
 ui/build
+
+# ide
+.vscode

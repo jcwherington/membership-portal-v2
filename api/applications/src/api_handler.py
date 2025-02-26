@@ -1,5 +1,6 @@
 from model.application import Application
 from services.dynamo import Dynamo
+from services.sns import Sns
 from common.error import ValidationError
 
 
@@ -35,4 +36,21 @@ def handle_post(event, dynamo):
     dynamo.put_item(applicant)
 
 def handle_delete(event, dynamo):
-    dynamo.delete_item(event['pathParameters']['id'])
+    result = dynamo.delete_item(event['pathParameters']['id'])
+
+    if event['queryStringParameters']['notify'] == 'true':
+        name = result['Attributes']['first_name']['S'] + ' ' + result['Attributes']['last_name']['S']
+        recipient = result['Attributes']['email']['S']
+
+        message_attributes ={
+            'Name': {
+                'DataType': 'String',
+                'StringValue': name
+            },
+            'Recipient': {
+                'DataType': 'String',
+                'StringValue': recipient
+            }
+        }
+        
+        Sns().notify_outcome(message_attributes)

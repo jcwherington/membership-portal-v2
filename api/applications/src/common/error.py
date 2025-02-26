@@ -5,3 +5,7 @@ class ValidationError(Exception):
 class DynamoError(Exception):
     def __init__(self, message):
         self.message = message
+
+class SnsError(Exception):
+    def __init__(self, message):
+        self.message = message

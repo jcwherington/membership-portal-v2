@@ -139,3 +139,7 @@ class Application:
                 'S': self.city,
             }
         }
+    
+    def full_name(self):
+        print(self)
+        return f'{self.first_name} ' + self.last_name

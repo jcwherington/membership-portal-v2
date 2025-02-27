@@ -86,7 +86,7 @@ class Application:
         )
 
     @classmethod
-    def from_dynamo(cls, item) -> Dict[str, Any]:
+    def from_dynamo(cls, item) -> Dict[str, str]:
         return {
             "firstName": item["first_name"]["S"],
             "lastName": item["last_name"]["S"],

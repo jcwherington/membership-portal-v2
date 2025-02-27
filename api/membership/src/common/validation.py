@@ -1,9 +1,10 @@
 import re
 from datetime import datetime
+from typing import Dict
 from common.error import ValidationError
 
 
-def validate_event(event):
+def validate_event(event: Dict) -> None:
     try:
         match event["httpMethod"]:
             case "GET":
@@ -25,7 +26,7 @@ def validate_event(event):
         raise ValidationError("invalid event object")
 
 
-def validate_get(event):
+def validate_get(event: Dict) -> None:
     if event["pathParameters"]:
         try:
             int(event["pathParameters"]["id"])
@@ -33,7 +34,7 @@ def validate_get(event):
             raise ValidationError("invalid id")
 
 
-def validate_post(event):
+def validate_post(event: Dict) -> None:
     if (
         event["queryStringParameters"]
         and not event["queryStringParameters"]["notify"] == "true"
@@ -48,7 +49,7 @@ def validate_post(event):
         raise ValidationError(f"the following parameters are invalid: {errors}")
 
 
-def validate_put(event):
+def validate_put(event: Dict) -> None:
     if not event["pathParameters"]:
         raise ValidationError("request missing path parameter")
 
@@ -63,7 +64,7 @@ def validate_put(event):
         raise ValidationError(f"the following parameters are invalid: {errors}")
 
 
-def validate_delete(event):
+def validate_delete(event: Dict) -> None:
     if not event["pathParameters"]:
         raise ValidationError("request missing path parameter")
 
@@ -73,7 +74,7 @@ def validate_delete(event):
         raise ValidationError("invalid id")
 
 
-def validate_body(body):
+def validate_body(body: Dict) -> list[str]:
     invalid_params = []
 
     if not re.match(r"^\S+@\S+\.\S+$", body["email"]):

@@ -3,7 +3,7 @@ from sqlalchemy import URL, Table, MetaData, Column, Text, DateTime, String, Int
 from config import db_endpoint, db_name, db_port, db_user, db_password, schema
 
 
-def connection_string():
+def connection_string() -> str:
     return URL.create(
         "postgresql+psycopg2",
         username=db_user(),
@@ -13,8 +13,7 @@ def connection_string():
         port=db_port(),
     )
 
-
-def table():
+def table() -> Table:
     return Table(
         "membership",
         MetaData(),
@@ -34,8 +33,7 @@ def table():
         schema=schema(),
     )
 
-
-def columns(table):
+def columns(table: Table) -> list[str]:
     return [
         table.c.member_id,
         table.c.first_name,

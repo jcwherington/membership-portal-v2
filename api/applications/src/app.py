@@ -1,15 +1,16 @@
 import json
 from logging import Logger
-from typing import List
+from typing import List, Dict
 
 from common.validation import validate_event
 from api_handler import handle_event
 from common.error import ValidationError, DynamoError, SnsError
 from model.response import Response
+from model.application import Application
 from config import logger
 
 
-def handler(event, _context) -> Response:
+def handler(event: Dict, _context) -> Response:
     try:
         log: Logger = logger()
         log.info(event)
@@ -18,7 +19,7 @@ def handler(event, _context) -> Response:
             event["body"] = json.loads(event["body"])
 
         validate_event(event)
-        data: List|None = handle_event(event)
+        data: List[Application]|None = handle_event(event)
 
     except ValidationError as error:
         log.error(error.message)

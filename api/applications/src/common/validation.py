@@ -1,10 +1,11 @@
 from common.error import ValidationError
 from datetime import datetime
+from typing import Dict
 
 
 HTTP_METHODS: list[str] = ["GET", "POST", "DELETE"]
 
-def validate_event(event) -> None:
+def validate_event(event: Dict) -> None:
     match event["httpMethod"]:
         case "GET":
             return
@@ -18,7 +19,7 @@ def validate_event(event) -> None:
             raise ValidationError("Invalid HTTP method")
 
 
-def validate_post(event) -> None:
+def validate_post(event: Dict) -> None:
     if not event["body"]:
         raise ValidationError("Request is missing body")
 
@@ -36,7 +37,7 @@ def validate_post(event) -> None:
         raise ValidationError("Invalid 'createdAt' in body")
 
 
-def validate_delete(event) -> None:
+def validate_delete(event: Dict) -> None:
     if not event["pathParameters"]:
         raise ValidationError("Request URL is missing path parameter")
 

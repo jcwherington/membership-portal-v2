@@ -1,4 +1,5 @@
 import json
+from typing import List, Dict
 
 from common.validation import validate_event
 from api_handler import handle_event
@@ -7,7 +8,7 @@ from model.response import Response
 from config import logger
 
 
-def handler(event, _context):
+def handler(event: Dict, _context) -> Response:
     try:
         log = logger()
         log.info(event)
@@ -16,7 +17,7 @@ def handler(event, _context):
             event["body"] = json.loads(event["body"])
 
         validate_event(event)
-        data = handle_event(event)
+        data: List[Dict] = handle_event(event)
 
     except ValidationError as error:
         log.error(error._message)

@@ -77,6 +77,12 @@ class DatabaseTest(unittest.TestCase):
             all(key in as_dict.keys() for key in expected_membership_keys())
         )
 
+    def test_delete_missing(self):
+        client = Client()
+        result = client.delete(6)
+
+        self.assertIsNone(result.fetchone())
+
     def test_update_unique_violation(self):
         client = Client()
         mock_exception = IntegrityError("", (""), Exception())

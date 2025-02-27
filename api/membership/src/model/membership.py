@@ -1,5 +1,6 @@
 from dataclasses import dataclass, fields
 from datetime import datetime, date
+from typing import Dict
 import humps
 
 
@@ -111,7 +112,7 @@ class Membership:
         self._updated_at = updated_at
 
     @classmethod
-    def from_event(cls, event):
+    def from_event(cls, event) -> "Membership":
         member_data = event["body"]
 
         return cls(
@@ -130,7 +131,7 @@ class Membership:
         )
 
     @classmethod
-    def serialize(cls, tuple):
+    def serialize(cls, tuple) -> Dict:
         property_names = [
             humps.camelize(field.name.lstrip("_")) for field in fields(cls)
         ]

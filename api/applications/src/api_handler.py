@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Dict
 
 from model.application import Application
 from services.dynamo import Dynamo
@@ -6,7 +6,7 @@ from services.sns import Sns
 from common.error import ValidationError
 
 
-def handle_event(event) -> List|None:
+def handle_event(event: Dict) -> List[Application]|None:
     dynamo = Dynamo()
 
     match event["httpMethod"]:
@@ -22,7 +22,7 @@ def handle_event(event) -> List|None:
             raise ValidationError("Invalid HTTP method")
 
 
-def handle_get(dynamo) -> List:
+def handle_get(dynamo: Dynamo) -> List[Application]:
     result = dynamo.get_items()
 
     data = []
@@ -34,12 +34,12 @@ def handle_get(dynamo) -> List:
     return data
 
 
-def handle_post(event, dynamo) -> None:
+def handle_post(event: Dict, dynamo: Dynamo) -> None:
     applicant = Application.from_event(event)
     dynamo.put_item(applicant)
 
 
-def handle_delete(event, dynamo) -> None:
+def handle_delete(event: Dict, dynamo: Dynamo) -> None:
     result = dynamo.delete_item(event["pathParameters"]["id"])
 
     if "notify" in event["queryStringParameters"]:

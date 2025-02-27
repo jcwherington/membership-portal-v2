@@ -9,7 +9,7 @@ from db.statement_generator import StatementGenerator
 
 class Client:
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._engine = create_engine(connection_string())
         self._table = table()
         self._generator = StatementGenerator(self._table)
@@ -56,5 +56,5 @@ class Client:
         except IntegrityError as error:
             raise DatabaseError(error)
 
-    def close_connection(self):
+    def close_connection(self) -> None:
         self._engine.dispose()

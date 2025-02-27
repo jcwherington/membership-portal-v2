@@ -1,41 +1,42 @@
 import sys
 import logging
+from logging import Logger
 import os
 
 
-def region():
+def region() -> str:
     return "us-west-2"
 
 
-def db_endpoint():
+def db_endpoint() -> str:
     return os.getenv("DB_ENDPOINT")
 
 
-def db_port():
+def db_port() -> str:
     return os.getenv("DB_PORT")
 
 
-def db_name():
+def db_name() -> str:
     return os.getenv("DB_NAME")
 
 
-def db_user():
+def db_user() -> str:
     return os.getenv("DB_USER")
 
 
-def db_password():
+def db_password() -> str:
     return os.getenv("DB_PASSWORD")
 
 
-def branch():
+def branch() -> str:
     return os.getenv("BRANCH")
 
 
-def sns_topic_arn():
+def sns_topic_arn() -> str:
     return os.getenv("SNS_TOPIC_ARN")
 
 
-def schema():
+def schema() -> str:
     match branch():
         case "local":
             return "local"
@@ -45,7 +46,7 @@ def schema():
             return "test"
 
 
-def logger():
+def logger() -> Logger:
     logging.basicConfig(
         stream=sys.stdout,
         level=logging.INFO,

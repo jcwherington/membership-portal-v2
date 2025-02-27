@@ -2,12 +2,12 @@ from psycopg2.errors import UniqueViolation
 
 
 class ValidationError(Exception):
-    def __init__(self, message):
+    def __init__(self, message) -> None:
         self._message = message
 
 
 class DatabaseError(Exception):
-    def __init__(self, error):
+    def __init__(self, error) -> None:
         if type(error.orig) == UniqueViolation:
             self._message = "email already exists"
             self._status = 400
@@ -17,5 +17,5 @@ class DatabaseError(Exception):
 
 
 class SnsError(Exception):
-    def __init__(self, message):
+    def __init__(self, message) -> None:
         self._message = message

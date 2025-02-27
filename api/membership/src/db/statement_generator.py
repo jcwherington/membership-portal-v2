@@ -1,12 +1,14 @@
-from sqlalchemy import insert, delete, update, select
+from sqlalchemy import insert, delete, update, select, Table
+
+from model.membership import Membership
 
 
 class StatementGenerator:
 
-    def __init__(self, table):
+    def __init__(self, table: Table) -> None:
         self._table = table
 
-    def insert(self, data):
+    def insert(self, data: Membership) -> str:
         return insert(self._table).values(
             first_name=data.first_name,
             last_name=data.last_name,
@@ -22,10 +24,10 @@ class StatementGenerator:
             updated_at=data.updated_at,
         )
 
-    def delete(self, id):
+    def delete(self, id: int) -> str:
         return delete(self._table).where(self._table.c.member_id == id)
 
-    def update(self, data, id):
+    def update(self, data: Membership, id: int) -> str:
         return (
             update(self._table)
             .where(self._table.c.member_id == id)
@@ -44,8 +46,8 @@ class StatementGenerator:
             )
         )
 
-    def select_one(self, id):
+    def select_one(self, id: int) -> str:
         return select(self._table).where(self._table.c.member_id == id)
 
-    def select_all(self):
+    def select_all(self) -> str:
         return select(self._table)

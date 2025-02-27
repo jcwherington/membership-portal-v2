@@ -51,7 +51,7 @@ export default function Review() {
     }, [applicant, reset])
 
     const deleteButtonHandler: Function = async (id: string) => {
-        const applicationResponse = await deleteApplication(id).then(data => data);
+        const applicationResponse = await deleteApplication(id, true).then(data => data);
 
         if (applicationResponse.status !== 200) {
             setError(applicationResponse.data.message);
@@ -63,7 +63,7 @@ export default function Review() {
 
     const addButtonHandler: SubmitHandler<undefined> = async (data: Applicant) => {
         const newMember = new Member(data);
-        const membershipResponse = await createMember(newMember);
+        const membershipResponse = await createMember(newMember, true);
 
         if (membershipResponse.status !== 200) {
             setError(membershipResponse.data.message);

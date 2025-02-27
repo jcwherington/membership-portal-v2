@@ -33,7 +33,7 @@ export default function Applications() {
 
     const approveApplicant: Function = async (applicant: Applicant) => {
         const newMember = new Member(applicant);
-        const membershipResponse = await createMember(newMember);
+        const membershipResponse = await createMember(newMember, true);
 
         if (membershipResponse.status !== 200) {
             setErrorMessage(membershipResponse.data.message);
@@ -51,7 +51,7 @@ export default function Applications() {
     }
 
     const rejectApplicant: Function = async (id: string) => {
-        const response = await deleteApplication(id);
+        const response = await deleteApplication(id, true);
         if (response.status !== 200) {
             setErrorMessage(response.data.message);
             return;

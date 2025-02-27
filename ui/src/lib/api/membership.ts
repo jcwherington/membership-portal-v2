@@ -39,11 +39,12 @@ export async function fetchMember(id: string) {
     return await handler(url, method);
 }
 
-export async function createMember(member: Member) {
+export async function createMember(member: Member, notify=false) {
     const method = 'POST';
     const data = JSON.stringify(member);
+    const url = notify ? membershipURL().concat('?notify=true') : membershipURL()
     
-    return await handler(membershipURL(), method, data);
+    return await handler(url, method, data);
 };
 
 export async function updateMember(member: Member) {

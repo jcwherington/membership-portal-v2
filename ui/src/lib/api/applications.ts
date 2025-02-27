@@ -31,9 +31,9 @@ export async function fetchApplications() {
     return handler(url, method);
 }
 
-export async function deleteApplication(id: string|number) {
+export async function deleteApplication(id: string|number, notify=false) {
     const method = 'DELETE';
-    const url = applicationsURL().concat(`/${id}`);
+    const url = applicationsURL().concat(notify ? `/${id}?notify=true` : `/${id}`);
     const payload = JSON.stringify({
         notify: true
     });

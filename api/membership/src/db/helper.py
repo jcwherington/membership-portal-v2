@@ -5,33 +5,35 @@ from config import db_endpoint, db_name, db_port, db_user, db_password, schema
 
 def connection_string():
     return URL.create(
-        'postgresql+psycopg2',
+        "postgresql+psycopg2",
         username=db_user(),
         password=db_password(),
         host=db_endpoint(),
         database=db_name(),
-        port=db_port()
+        port=db_port(),
     )
+
 
 def table():
     return Table(
-        'membership',
+        "membership",
         MetaData(),
-        Column('member_id', Integer, primary_key=True),
-        Column('first_name', Text, nullable=False),
-        Column('last_name', Text, nullable=False),
-        Column('email', Text, nullable=False),
-        Column('organisation', Text),
-        Column('position', Text),
-        Column('industry', Text),
-        Column('dob', DateTime, nullable=False),
-        Column('mobile', String(10)),
-        Column('city', Text),
-        Column('post_code', String(4)),
-        Column('created_at', DateTime),
-        Column('updated_at', DateTime),
-        schema=schema()
+        Column("member_id", Integer, primary_key=True),
+        Column("first_name", Text, nullable=False),
+        Column("last_name", Text, nullable=False),
+        Column("email", Text, nullable=False),
+        Column("organisation", Text),
+        Column("position", Text),
+        Column("industry", Text),
+        Column("dob", DateTime, nullable=False),
+        Column("mobile", String(10)),
+        Column("city", Text),
+        Column("post_code", String(4)),
+        Column("created_at", DateTime),
+        Column("updated_at", DateTime),
+        schema=schema(),
     )
+
 
 def columns(table):
     return [
@@ -47,5 +49,5 @@ def columns(table):
         table.c.city,
         table.c.post_code,
         table.c.created_at,
-        table.c.updated_at
+        table.c.updated_at,
     ]

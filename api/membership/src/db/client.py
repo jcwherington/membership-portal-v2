@@ -5,7 +5,7 @@ from db.helper import connection_string, table, columns
 from model.membership import Membership
 from common.error import DatabaseError
 from db.statement_generator import StatementGenerator
- 
+
 
 class Client:
 
@@ -20,9 +20,9 @@ class Client:
             result = connection.execute(statement)
             connection.commit()
             connection.close()
-        
+
         return result
-    
+
     def read(self, id: int):
         statement = self._generator.select_one(id)
 

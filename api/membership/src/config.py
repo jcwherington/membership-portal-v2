@@ -24,6 +24,9 @@ def db_password():
 def branch():
     return os.getenv('BRANCH')
 
+def sns_topic_arn():
+    return os.getenv('SNS_TOPIC_ARN')
+
 def schema():
     match branch():
         case 'local':

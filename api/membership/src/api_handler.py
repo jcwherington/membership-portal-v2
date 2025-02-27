@@ -1,4 +1,5 @@
 from db.client import Client
+from services.sns import Sns
 from model.membership import Membership
 from common.error import ValidationError
 
@@ -32,6 +33,21 @@ def handle_get(event, db_client):
 def handle_post(event, db_client):
     member = Membership.from_event(event)
     result = db_client.create(member)
+
+    if 'notify' in event['queryStringParameters']:
+        name = member.first_name + ' ' + member.last_name
+        message_attributes = {
+            'Name': {
+                'DataType': 'String',
+                'StringValue': name
+            },
+            'Recipient': {
+                'DataType': 'String',
+                'StringValue': member.email
+            }
+        }
+
+        Sns().notify_outcome(message_attributes)
 
     return [Membership.serialize(result.fetchone())]
 

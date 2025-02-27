@@ -2,7 +2,7 @@ import json
 
 from common.validation import validate_event
 from api_handler import handle_event
-from common.error import ValidationError, DatabaseError
+from common.error import ValidationError, DatabaseError, SnsError
 from model.response import Response
 from config import logger
 
@@ -25,6 +25,10 @@ def handler(event, _context):
     except DatabaseError as error:
         log.error(error._message)
         return Response(error._status, error._message).resolve()
+    
+    except SnsError as error:
+        log.error(error._message)
+        return Response(500, error._message).resolve()
     
     except Exception as error:
         log.error(error)

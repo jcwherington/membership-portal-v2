@@ -2,7 +2,7 @@ import json
 
 from common.validation import validate_event
 from api_handler import handle_event
-from common.error import ValidationError, DynamoError
+from common.error import ValidationError, DynamoError, SnsError
 from model.response import Response
 from config import logger
 
@@ -23,6 +23,10 @@ def handler(event, _context):
         return Response(400, error.message).resolve()
 
     except DynamoError as error:
+        log.error(error.message)
+        return Response(500, error.message).resolve()
+    
+    except SnsError as error:
         log.error(error.message)
         return Response(500, error.message).resolve()
     

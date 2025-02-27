@@ -1,4 +1,6 @@
 import json
+from logging import Logger
+from typing import List
 
 from common.validation import validate_event
 from api_handler import handle_event
@@ -7,16 +9,16 @@ from model.response import Response
 from config import logger
 
 
-def handler(event, _context):
+def handler(event, _context) -> Response:
     try:
-        log = logger()
+        log: Logger = logger()
         log.info(event)
 
         if event["body"] and type(event["body"]) == str:
             event["body"] = json.loads(event["body"])
 
         validate_event(event)
-        data = handle_event(event)
+        data: List|None = handle_event(event)
 
     except ValidationError as error:
         log.error(error.message)

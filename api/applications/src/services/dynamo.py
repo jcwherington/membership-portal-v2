@@ -1,5 +1,7 @@
 import boto3
 from botocore.exceptions import ClientError
+from botocore.client import BaseClient
+from typing import Dict, Any, Optional
 
 from config import region, table_name, dynamo_endpoint, logger
 from model.application import Application
@@ -8,13 +10,13 @@ from common.error import DynamoError
 
 class Dynamo:
 
-    def __init__(self):
-        self.client = boto3.client(
+    def __init__(self) -> None:
+        self.client: BaseClient = boto3.client(
             "dynamodb", endpoint_url=dynamo_endpoint(), region_name=region()
         )
         self.logger = logger()
 
-    def put_item(self, applicant: Application):
+    def put_item(self, applicant: Application) -> None:
         self.logger.info(f"Adding applicant: {applicant}")
 
         try:
@@ -22,7 +24,7 @@ class Dynamo:
         except ClientError as error:
             raise DynamoError(error.response["Error"]["Message"])
 
-    def get_items(self):
+    def get_items(self) -> Dict[str, Any]:
         self.logger.info("Fetching all applicants")
 
         try:
@@ -30,7 +32,7 @@ class Dynamo:
         except ClientError as error:
             raise DynamoError(error.response["Error"]["Message"])
 
-    def delete_item(self, id: int):
+    def delete_item(self, id: int) -> Optional[Dict[str, Any]]:
         self.logger.info(f"Deleting applicant id: {id}")
 
         try:

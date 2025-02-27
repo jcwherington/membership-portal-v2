@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { applicationsURL, apiKey, local } from '../../config';
 
 async function handler(url: string, method: string, payload=null) {
@@ -11,7 +11,7 @@ async function handler(url: string, method: string, payload=null) {
         }
     }
 
-    const result = await axios(requestConfig);
+    const result: AxiosResponse = await axios(requestConfig);
 
     if (local()) {
         const body = JSON.parse(result.data?.body);
@@ -26,7 +26,7 @@ async function handler(url: string, method: string, payload=null) {
 
 export async function fetchApplications() {
     const method = 'GET';
-    const url = applicationsURL()
+    const url: string = applicationsURL()
     
     return handler(url, method);
 }

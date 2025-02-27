@@ -1,5 +1,6 @@
 import boto3
 from botocore.exceptions import ClientError
+from botocore.client import BaseClient
 
 from config import region, sns_topic_arn, logger
 from common.error import SnsError
@@ -8,7 +9,7 @@ from common.error import SnsError
 class Sns:
 
     def __init__(self):
-        self.client = boto3.client("sns", region_name=region())
+        self.client: BaseClient = boto3.client("sns", region_name=region())
         self.logger = logger()
 
     def notify_outcome(self, message_attributes):

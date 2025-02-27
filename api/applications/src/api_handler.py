@@ -1,10 +1,12 @@
+from typing import List
+
 from model.application import Application
 from services.dynamo import Dynamo
 from services.sns import Sns
 from common.error import ValidationError
 
 
-def handle_event(event):
+def handle_event(event) -> List|None:
     dynamo = Dynamo()
 
     match event["httpMethod"]:
@@ -20,7 +22,7 @@ def handle_event(event):
             raise ValidationError("Invalid HTTP method")
 
 
-def handle_get(dynamo):
+def handle_get(dynamo) -> List:
     result = dynamo.get_items()
 
     data = []
@@ -32,12 +34,12 @@ def handle_get(dynamo):
     return data
 
 
-def handle_post(event, dynamo):
+def handle_post(event, dynamo) -> None:
     applicant = Application.from_event(event)
     dynamo.put_item(applicant)
 
 
-def handle_delete(event, dynamo):
+def handle_delete(event, dynamo) -> None:
     result = dynamo.delete_item(event["pathParameters"]["id"])
 
     if "notify" in event["queryStringParameters"]:

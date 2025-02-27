@@ -3,7 +3,7 @@ from typing import Dict
 
 
 class Response:
-    def __init__(self, code: int, message: str, data=None):
+    def __init__(self, code: int, message: str, data=None) -> None:
         self._status_code = code
         self._message = message
         self._data = data

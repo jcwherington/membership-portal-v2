@@ -1,11 +1,10 @@
 from common.error import ValidationError
 from datetime import datetime
-from config import logger
-
-HTTP_METHODS = ["GET", "POST", "DELETE"]
 
 
-def validate_event(event):
+HTTP_METHODS: list[str] = ["GET", "POST", "DELETE"]
+
+def validate_event(event) -> None:
     match event["httpMethod"]:
         case "GET":
             return
@@ -19,7 +18,7 @@ def validate_event(event):
             raise ValidationError("Invalid HTTP method")
 
 
-def validate_post(event):
+def validate_post(event) -> None:
     if not event["body"]:
         raise ValidationError("Request is missing body")
 
@@ -37,7 +36,7 @@ def validate_post(event):
         raise ValidationError("Invalid 'createdAt' in body")
 
 
-def validate_delete(event):
+def validate_delete(event) -> None:
     if not event["pathParameters"]:
         raise ValidationError("Request URL is missing path parameter")
 

@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from datetime import datetime
+from typing import Any, Dict
 
 
 @dataclass
@@ -66,7 +67,7 @@ class Application:
         return self._created_at
 
     @classmethod
-    def from_event(cls, event):
+    def from_event(cls, event: Dict) -> "Application":
         applicant_data = event["body"]
 
         return cls(
@@ -85,7 +86,7 @@ class Application:
         )
 
     @classmethod
-    def from_dynamo(cls, item):
+    def from_dynamo(cls, item) -> Dict[str, Any]:
         return {
             "firstName": item["first_name"]["S"],
             "lastName": item["last_name"]["S"],
@@ -101,7 +102,7 @@ class Application:
             "id": item["id"]["S"],
         }
 
-    def to_dynamo(self):
+    def to_dynamo(self) -> Dict[str, Any]:
         return {
             "id": {
                 "S": self.id,

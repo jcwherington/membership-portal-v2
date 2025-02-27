@@ -7,15 +7,10 @@ class Response:
         self._status_code = code
         self._message = message
         self._data = data
-    
+
     def resolve(self) -> Dict:
         return {
-            'statusCode': self._status_code,
-            'headers': {
-                "Access-Control-Allow-Origin" : "*"
-            },
-            'body': json.dumps({
-                'message': self._message,
-                'data': self._data
-            })
+            "statusCode": self._status_code,
+            "headers": {"Access-Control-Allow-Origin": "*"},
+            "body": json.dumps({"message": self._message, "data": self._data}),
         }

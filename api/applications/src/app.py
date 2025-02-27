@@ -12,12 +12,12 @@ def handler(event, _context):
         log = logger()
         log.info(event)
 
-        if event['body'] and type(event['body']) == str:
-            event['body'] = json.loads(event['body'])
+        if event["body"] and type(event["body"]) == str:
+            event["body"] = json.loads(event["body"])
 
         validate_event(event)
         data = handle_event(event)
-    
+
     except ValidationError as error:
         log.error(error.message)
         return Response(400, error.message).resolve()
@@ -25,13 +25,13 @@ def handler(event, _context):
     except DynamoError as error:
         log.error(error.message)
         return Response(500, error.message).resolve()
-    
+
     except SnsError as error:
         log.error(error.message)
         return Response(500, error.message).resolve()
-    
+
     except Exception as error:
         log.error(error)
-        return Response(500, 'an unexpected error occurred').resolve()
+        return Response(500, "an unexpected error occurred").resolve()
 
-    return Response(200, 'success', data).resolve()
+    return Response(200, "success", data).resolve()

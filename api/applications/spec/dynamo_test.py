@@ -9,37 +9,39 @@ from common.error import DynamoError
 
 
 class DynamoTest(unittest.TestCase):
-    
-    def setUp(self):        
+
+    def setUp(self):
         self.event = test_event()
         self.applicant = Application.from_event(self.event)
         self.dynamo = Dynamo()
         init_database(self.dynamo.client)
-    
+
     def test_put_item(self):
         self.dynamo.put_item(self.applicant)
         result = get_item(self.dynamo.client, self.applicant.id)
 
-        self.assertIn('Item', result)
-    
+        self.assertIn("Item", result)
+
     def test_get_items(self):
         result = self.dynamo.get_items()
 
-        self.assertTrue(len(result['Items']) > 0)
+        self.assertTrue(len(result["Items"]) > 0)
 
     def test_delete_item(self):
-        self.dynamo.delete_item('10')
-        result = get_item(self.dynamo.client, '10')
+        self.dynamo.delete_item("10")
+        result = get_item(self.dynamo.client, "10")
 
-        self.assertNotIn('Item', result)
+        self.assertNotIn("Item", result)
 
-    @patch('botocore.client.BaseClient._make_api_call')
+    @patch("botocore.client.BaseClient._make_api_call")
     def test_dynamo_error(self, mock):
-        mock.side_effect = ClientError(error_response={'Error':{'Message':'error'}}, operation_name='mock_op')
+        mock.side_effect = ClientError(
+            error_response={"Error": {"Message": "error"}}, operation_name="mock_op"
+        )
 
         with self.assertRaises(DynamoError):
             self.dynamo.put_item(self.applicant)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

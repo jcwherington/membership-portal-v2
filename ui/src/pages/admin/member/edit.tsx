@@ -12,7 +12,7 @@ import LargeButton from '@/components/buttons/LargeButton';
 import SubmitButton from '@/components/buttons/SubmitButton';
 
 
-export default function Edit() {
+export default function Edit(): JSX.Element {
     const router: NextRouter = useRouter()
     const [errorMessage, setError] = useState<string | null>(null)
     const [member, setMember] = useState<Member|null>(null);
@@ -173,4 +173,4 @@ export default function Edit() {
             </div>
         </>  
     );
-};
+}

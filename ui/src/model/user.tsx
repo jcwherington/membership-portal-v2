@@ -12,15 +12,15 @@ class User {
         this._expiry = decodedToken?.exp;
     }
 
-    isLoggedIn() {
+    isLoggedIn(): boolean {
         return this._isLoggedIn;
     }
 
-    isExpired() {
+    isExpired(): boolean {
         return  Date.now() >= (this._expiry * 1000);
     }
 
-    isValid() {
+    isValid(): boolean {
         return this.isLoggedIn() && !this.isExpired()
     }
 }

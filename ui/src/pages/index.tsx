@@ -5,22 +5,24 @@ import { verifyCredentials, generateToken } from '@/lib/auth';
 import Login from '@/components/Login';
 import ErrorComponent from '@/components/Error';
 
-export default function Home() {
+export default function Home(): JSX.Element {
   const router: NextRouter = useRouter();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
-    const token = cookieCutter.get('token');
+    const token: string = cookieCutter.get('token');
 
     if (token) {
       router.push('/admin.html');
     }
   }, [router]);
 
-  const handleLogin = (event) => {
+  const handleLogin: Function = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const username = event.target.username.value;
-    const password = event.target.password.value;
+
+    const login = event.target as HTMLFormElement
+    const username: string = login.username.value;
+    const password: string = login.password.value;
 
     if (verifyCredentials(username, password)) {
       const token = generateToken({

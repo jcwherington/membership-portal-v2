@@ -6,7 +6,7 @@ import { useRouter, NextRouter } from 'next/router';
 import Member from '@/model/member';
 import { DATE_FORMAT } from '@/lib/constants';
 
-const TableSubHeaderComponent = (props: {onFilter: Function, data: Member[]}) => {
+const TableSubHeaderComponent = (props: {onFilter: Function, data: Member[]}): JSX.Element => {
     const router: NextRouter = useRouter();
     const [startDate, setStartDate] = useState<string | null>(null)
     const [endDate, setEndDate] = useState<string | null>(null)

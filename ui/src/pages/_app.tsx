@@ -7,13 +7,14 @@ import { useState, useEffect } from 'react';
 import { Inter } from 'next/font/google'
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme, Theme } from '@mui/material/styles';
 import User from '@/model/user';
+import { NextFont } from 'next/dist/compiled/@next/font';
 
 
-const inter = Inter({ subsets: ['latin'] })
+const inter: NextFont = Inter({ subsets: ['latin'] })
 
-const theme = createTheme({
+const theme: Theme = createTheme({
   palette: {
     secondary: {
       main: '#57C4CA',
@@ -21,7 +22,7 @@ const theme = createTheme({
   },
 });
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps }: AppProps): JSX.Element {
   const router: NextRouter = useRouter();
   const [user, setUser] = useState<User | null>(null);
 

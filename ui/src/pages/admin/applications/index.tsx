@@ -11,11 +11,11 @@ import SmallButton from '@/components/buttons/SmallButton';
 import Member from '@/model/member';
 import ErrorComponent from '@/components/Error';
 
-export default function Applications() {
+export default function Applications(): JSX.Element {
     const router: NextRouter = useRouter();
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-    const { data, error } = useSWR(['asd'], fetchApplications)
+    const { data, error } = useSWR(['asd'], fetchApplications);
 
     if (error) return <ErrorComponent message={errorMessage}/>;
     if (!data) return <CircularProgress />;
@@ -38,26 +38,27 @@ export default function Applications() {
         if (membershipResponse.status !== 200) {
             setErrorMessage(membershipResponse.data.message);
             return;
-        };
+        }
 
         const applicationResponse = await deleteApplication(applicant.getId())
 
         if (applicationResponse.status !== 200) {
             setErrorMessage(applicationResponse.data.message);
             return
-        };
+        }
 
         router.reload();
     }
 
     const rejectApplicant: Function = async (id: string) => {
         const response = await deleteApplication(id, true);
+
         if (response.status !== 200) {
             setErrorMessage(response.data.message);
             return;
         }
         
-        router.reload()
+        router.reload();
     }
 
     const columns = [
@@ -93,7 +94,7 @@ export default function Applications() {
         },
         {
             button: true,
-            cell: (row: Applicant) => <SmallButton handler={approveApplicant} data={row} type='approve' /> 
+            cell: (row: Applicant) => <SmallButton handler={approveApplicant} data={row} type='approve'/> 
         },
         {
             button: true,

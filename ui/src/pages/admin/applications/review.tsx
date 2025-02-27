@@ -15,9 +15,9 @@ import ErrorComponent from '@/components/Error';
 import { CircularProgress } from '@mui/material';
 
 
-export default function Review() {
-    const router: NextRouter = useRouter()
-    const [error, setError] = useState<string | null>(null)
+export default function Review(): JSX.Element {
+    const router: NextRouter = useRouter();
+    const [error, setError] = useState<string | null>(null);
     const [applicant, setApplicant] = useState<Applicant|null>(null);
     const {
         register,
@@ -30,7 +30,7 @@ export default function Review() {
         if(router.query.data) {
             setApplicant(new Applicant(JSON.parse(router.query.data as string)));
         }
-    }, [router.query.data])
+    }, [router.query.data]);
     
     useEffect(() => {
         if (applicant) {
@@ -48,7 +48,7 @@ export default function Review() {
             }
             reset({...defaultValues})
         }
-    }, [applicant, reset])
+    }, [applicant, reset]);
 
     const deleteButtonHandler: Function = async (id: string) => {
         const applicationResponse = await deleteApplication(id, true).then(data => data);
@@ -80,7 +80,7 @@ export default function Review() {
         router.push('/admin/applications.html');
     }
 
-    if (!applicant) return <CircularProgress />
+    if (!applicant) return <CircularProgress />;
 
     return (
         <>
@@ -195,4 +195,4 @@ export default function Review() {
             </div>
         </>
     );
-};
+}

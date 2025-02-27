@@ -1,8 +1,8 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import Member from '@/model/member';
 import { membershipURL, apiKey, local } from '@/config';
 
-async function handler(url, method, payload = null) {
+async function handler(url, method, payload = null): Promise<AxiosResponse> {
     const requestConfig: AxiosRequestConfig = {
         method: method,
         url: url,
@@ -13,51 +13,51 @@ async function handler(url, method, payload = null) {
         }
     }
 
-    const result = await axios(requestConfig);
+    const result: AxiosResponse = await axios(requestConfig);
 
     if (local()) {
         const body = JSON.parse(result.data?.body);
         return {
             status: result.data.statusCode,
             data:   body
-        }
+        } as AxiosResponse
     }
 
     return result;
 }
 
-export async function fetchMembers() {
+export async function fetchMembers(): Promise<AxiosResponse> {
     const method = 'GET';
 
     return await handler(membershipURL(), method);
 }
 
-export async function fetchMember(id: string) {
-    const url = membershipURL().concat(`/${id}`);
+export async function fetchMember(id: string): Promise<AxiosResponse> {
+    const url: string = membershipURL().concat(`/${id}`);
     const method = 'GET';
     
     return await handler(url, method);
 }
 
-export async function createMember(member: Member, notify=false) {
+export async function createMember(member: Member, notify=false): Promise<AxiosResponse> {
     const method = 'POST';
-    const data = JSON.stringify(member);
-    const url = notify ? membershipURL().concat('?notify=true') : membershipURL()
+    const data: string = JSON.stringify(member);
+    const url: string = notify ? membershipURL().concat('?notify=true') : membershipURL()
     
     return await handler(url, method, data);
-};
+}
 
-export async function updateMember(member: Member) {
-    const url = membershipURL().concat(`/${member.getId()}`);
+export async function updateMember(member: Member): Promise<AxiosResponse> {
+    const url: string = membershipURL().concat(`/${member.getId()}`);
     const method = 'PUT';
-    const data = JSON.stringify(member);
+    const data: string = JSON.stringify(member);
     
     return await handler(url, method, data);
-};
+}
 
-export async function deleteMember(id: string) {
+export async function deleteMember(id: string): Promise<AxiosResponse> {
     const method = 'DELETE';
-    const url = membershipURL().concat(`/${id}`);
+    const url: string = membershipURL().concat(`/${id}`);
     
     return await handler(url, method);
-};
+}

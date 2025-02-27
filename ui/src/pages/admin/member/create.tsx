@@ -1,7 +1,7 @@
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import styles from '@/styles/Form.module.css';
 import { NextRouter, useRouter } from 'next/router';
-import { useState } from 'react'
+import { useState } from 'react';
 import dayjs from 'dayjs';
 import { DateField } from '@mui/x-date-pickers';
 import { INDUSTRIES, DATE_FORMAT } from '@/lib/constants';
@@ -12,9 +12,9 @@ import SubmitButton from '@/components/buttons/SubmitButton';
 import ErrorComponent from '@/components/Error';
 
 
-export default function Create() {
-    const router: NextRouter = useRouter()
-    const [error, setError] = useState<string | null>(null)
+export default function Create(): JSX.Element {
+    const router: NextRouter = useRouter();
+    const [error, setError] = useState<string | null>(null);
 
     const addButtonHandler: SubmitHandler<undefined> = async (data: Member) => {
         const newMember = new Member(data);

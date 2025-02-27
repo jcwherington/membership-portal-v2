@@ -10,7 +10,7 @@ import TableSubHeaderComponent from '@/components/TableSubHeader';
 import SmallButton from '@/components/buttons/SmallButton';
 import ErrorComponent from '@/components/Error';
 
-export default function Applications() {
+export default function Applications(): JSX.Element {
     const router: NextRouter = useRouter()
     const [initMembers, setMembers] = useState(null);
     const [filteredMembers, setFilteredMembers] = useState(null);

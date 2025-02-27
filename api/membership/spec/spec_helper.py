@@ -8,7 +8,7 @@ def test_event():
         "resource": "/",
         "path": "/",
         "httpMethod": None,
-        "queryStringParameters": None,
+        "queryStringParameters": {},
         "multiValueQueryStringParameters": None,
         "pathParameters": None,
         "body": ""

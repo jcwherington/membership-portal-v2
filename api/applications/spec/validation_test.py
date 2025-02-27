@@ -67,5 +67,13 @@ class EventValidationTest(unittest.TestCase):
         with self.assertRaises(ValidationError):
             validate_event(self.event)
 
+    def test_DELETE_with_invalid_notify(self):
+        self.event['httpMethod'] = 'DELETE'
+        self.event['queryStringParameters']['notify'] = 'invalid'
+        self.event['pathParameters']['id'] = '1'
+
+        with self.assertRaises(ValidationError):
+            validate_event(self.event)
+
 if __name__ == '__main__':
     unittest.main()

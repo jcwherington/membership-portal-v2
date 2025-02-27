@@ -40,3 +40,6 @@ def validate_delete(event):
     
     if not event['pathParameters']['id']:
         raise ValidationError('Invalid \'id\' in path parameter')
+    
+    if event['queryStringParameters'] and not event['queryStringParameters']['notify'] == 'true' :
+        raise ValidationError(f'invalid value for notify query string parameter: {event['queryStringParameters']['notify']}')

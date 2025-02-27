@@ -32,6 +32,28 @@ class EventValidationTest(unittest.TestCase):
             self.fail()
     
     @patch('common.validation.validate_body')
+    def test_validate_post_with_valid_notify(self, validate_body_patch):
+        self.event['httpMethod'] = 'POST'
+        self.event['queryStringParameters']['notify'] = 'true'
+        self.event['body'] = test_body()
+        validate_body_patch.return_value = []
+
+        try:
+            validate_event(self.event)
+        except ValidationError:
+            self.fail()
+    
+    @patch('common.validation.validate_body')
+    def test_validate_post_with_invalid_notify(self, validate_body_patch):
+        self.event['httpMethod'] = 'POST'
+        self.event['queryStringParameters']['notify'] = 'invalid'
+        self.event['body'] = test_body()
+        validate_body_patch.return_value = []
+
+        with self.assertRaises(ValidationError):
+            validate_event(self.event)
+    
+    @patch('common.validation.validate_body')
     def test_validate_put(self, validate_body_patch):
         self.event['httpMethod'] = 'PUT'
         self.event['pathParameters'] = { 'id': 1 }

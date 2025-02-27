@@ -32,6 +32,9 @@ def validate_get(event):
             raise ValidationError('invalid id')
         
 def validate_post(event):
+    if event['queryStringParameters'] and not event['queryStringParameters']['notify'] == 'true' :
+        raise ValidationError(f'invalid value for notify query string parameter: {event['queryStringParameters']['notify']}')
+    
     errors = validate_body(event['body'])
 
     if len(errors) > 0:

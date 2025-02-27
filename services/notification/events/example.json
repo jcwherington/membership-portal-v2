@@ -16,10 +16,6 @@
               "Type": "String",
               "Value": "example@example.com"
             },
-            "Outcome": {
-              "Type": "String",
-              "Value": "ACCEPTED"
-            },
             "Name": {
               "Type": "String",
               "Value": "Brian Scala"

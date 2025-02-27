@@ -8,7 +8,7 @@ def test_event():
         "resource": "/membership/applications",
         "path": "/membership/applications",
         "httpMethod": 'POST',
-        "queryStringParameters": None,
+        "queryStringParameters": {},
         "multiValueQueryStringParameters": None,
         "pathParameters": {
             'id': 1

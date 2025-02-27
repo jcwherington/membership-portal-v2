@@ -45,6 +45,19 @@ class ApiHandlerTest(unittest.TestCase):
         handle_event(self.event)
 
         delete_item_mock.assert_called_once()
+    
+    @patch('api_handler.Dynamo')
+    @patch('api_handler.Sns')
+    def test_handle_event_delete_notify(self, sns_patch, dynamo_patch):
+        self.event['httpMethod'] = 'DELETE'
+        self.event['queryStringParameters']['notify'] = 'true'
+        notify_outcome_mock = sns_patch.return_value.notify_outcome
+        delete_item_mock = dynamo_patch.return_value.delete_item
+
+        handle_event(self.event)
+
+        notify_outcome_mock.assert_called_once()
+        delete_item_mock.assert_called_once()
 
     def test_handle_event_invalid_http_method(self):
         self.event['httpMethod'] = 'INVALID'

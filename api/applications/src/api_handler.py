@@ -38,7 +38,7 @@ def handle_post(event, dynamo):
 def handle_delete(event, dynamo):
     result = dynamo.delete_item(event['pathParameters']['id'])
 
-    if event['queryStringParameters']['notify'] == 'true':
+    if 'notify' in event['queryStringParameters']:
         name = result['Attributes']['first_name']['S'] + ' ' + result['Attributes']['last_name']['S']
         recipient = result['Attributes']['email']['S']
 

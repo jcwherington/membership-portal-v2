@@ -34,6 +34,9 @@ Parameters:
   DbPassword:
     Type: String
     Description: Membership database password
+  SnsTopicArn:
+    Type: String
+    Description: ARN of outcome sns topc
 
 Resources:
   MembershipApiLambda:
@@ -56,6 +59,7 @@ Resources:
           DB_ENDPOINT: !Ref DbEndpoint
           DB_USER: !Ref DbUser
           DB_PASSWORD: !Ref DbPassword
+          SNS_TOPIC_ARN: !Ref SnsTopicArn
       AssumeRolePolicyDocument:
         Version: "2012-10-17"
         Statement:
@@ -70,10 +74,12 @@ Resources:
       VpcConfig:
         SecurityGroupIds:
           - sg-04caff40b09c98f17
+          - sg-0ce621028ea149f65
         SubnetIds:
           - subnet-0d559bcdc99142fc9
           - subnet-09636efde372f7c29
           - subnet-02266618a1c5df2f3
+          - subnet-01a7892328bf96cf4
 
   ApplicationApiLambda:
     Type: AWS::Serverless::Function
@@ -90,6 +96,7 @@ Resources:
       Environment:
         Variables:
           BRANCH: !Ref Branch
+          SNS_TOPIC_ARN: !Ref SnsTopicArn
       AssumeRolePolicyDocument:
         Version: "2012-10-17"
         Statement:
@@ -145,6 +152,15 @@ Resources:
                   - dynamodb:PutItem
                 Resource:
                   - !GetAtt ApplicationTable.Arn
+        - PolicyName: SnsPermissions
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - sns:Publish
+                Resource:
+                  - !Ref SnsTopicArn
 
   MembershipLambdaPermissionForApiGateway:
     Type: AWS::Lambda::Permission

@@ -2,6 +2,7 @@
 set -eou pipefail
 
 AWS_REGION=us-west-2
+AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
 BRANCH=$(git branch --show-current)
 STACK_NAME=membership-api-$BRANCH-stack
 BUCKET=mpv2-lambda
@@ -12,8 +13,8 @@ APPLICATION_SRC_OBJECT_KEY=membership-api-$BRANCH/application.zip
 SWAGGER_OBJECT_KEY=membership-api-$BRANCH/swagger.yml
 
 # Local path to the Lambda deployment packages and swagger definition
-MEMBERSHIP_DEPLOYMENT_PACKAGE=membership-api.zip
-APPLICATION_DEPLOYMENT_PACKAGE=application-api.zip
+MEMBERSHIP_DEPLOYMENT_PACKAGE=membership/build/membership-api.zip
+APPLICATION_DEPLOYMENT_PACKAGE=applications/build/application-api.zip
 SWAGGER_DEFINITION=swagger.yml
 
 # Upload the Lambda deployment packages to S3
@@ -29,6 +30,7 @@ DB_PORT=$(aws ssm get-parameter --name mpv2-db-port --query "Parameter.Value" --
 DB_ENDPOINT=$(aws ssm get-parameter --name mpv2-db-endpoint --query "Parameter.Value" --output text)
 DB_USER=$(aws ssm get-parameter --name mpv2-db-user --query "Parameter.Value" --output text)
 DB_PASSWORD=$(aws ssm get-parameter --name mpv2-db-password --query "Parameter.Value" --output text)
+SNS_TOPIC_ARN=arn:aws:sns:$AWS_REGION:$AWS_ACCOUNT_ID:Outcome-$BRANCH
 
 # Deploy the membership api stack
 # Update the stack or create it if it doesn't already exist
@@ -48,6 +50,7 @@ if aws cloudformation describe-stacks --stack-name $STACK_NAME 2>/dev/null; then
             ParameterKey=DbEndpoint,ParameterValue=$DB_ENDPOINT \
             ParameterKey=DbUser,ParameterValue=$DB_USER \
             ParameterKey=DbPassword,ParameterValue=$DB_PASSWORD \
+            ParameterKey=SnsTopicArn,ParameterValue=$SNS_TOPIC_ARN \
         --region $AWS_REGION \
         --capabilities CAPABILITY_AUTO_EXPAND CAPABILITY_NAMED_IAM
     aws cloudformation wait stack-update-complete --stack-name $STACK_NAME
@@ -67,6 +70,7 @@ else
             ParameterKey=DbEndpoint,ParameterValue=$DB_ENDPOINT \
             ParameterKey=DbUser,ParameterValue=$DB_USER \
             ParameterKey=DbPassword,ParameterValue=$DB_PASSWORD \
+            ParameterKey=SnsTopicArn,ParameterValue=$SNS_TOPIC_ARN \
         --region $AWS_REGION \
         --capabilities CAPABILITY_AUTO_EXPAND CAPABILITY_NAMED_IAM
     aws cloudformation wait stack-create-complete --stack-name $STACK_NAME

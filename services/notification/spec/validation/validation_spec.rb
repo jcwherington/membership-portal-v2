@@ -6,7 +6,7 @@ require_relative '../spec_helper'
 
 RSpec.describe 'validation' do
   before do
-    @event = test_event()
+    @event = test_event
     @message_attributes = @event['Records'][0]['Sns']['MessageAttributes']
   end
 
@@ -59,20 +59,25 @@ RSpec.describe 'validation' do
       it 'raises a validation error when Recipient key is missing' do
         modified_message_attributes.delete('Recipient')
 
-        expect { validate_message_attributes(message_attributes: modified_message_attributes) }.to raise_error(ValidationError)
+        expect do
+          validate_message_attributes(message_attributes: modified_message_attributes)
+        end.to raise_error(ValidationError)
       end
 
       it 'raises a validation error when Name key is missing' do
         modified_message_attributes.delete('Name')
 
-        expect { validate_message_attributes(message_attributes: modified_message_attributes) }.to raise_error(ValidationError)
+        expect do
+          validate_message_attributes(message_attributes: modified_message_attributes)
+        end.to raise_error(ValidationError)
       end
-
 
       it 'raises a validation error when Recipient Value key is invalid' do
         modified_message_attributes['Recipient']['Value'] = 'invalid'
 
-        expect { validate_message_attributes(message_attributes: modified_message_attributes) }.to raise_error(ValidationError)
+        expect do
+          validate_message_attributes(message_attributes: modified_message_attributes)
+        end.to raise_error(ValidationError)
       end
     end
   end

@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 source 'http://rubygems.org'
 ruby '3.2.7'
 
-gem 'aws-sdk-ses'
 gem 'aws-sdk-s3'
+gem 'aws-sdk-ses'
 gem 'liquid', '4.0.4'
 
 group :test do

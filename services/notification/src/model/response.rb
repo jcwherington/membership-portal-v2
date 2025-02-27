@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 class Response
-  def initialize(statusCode, body)
-    @statusCode = statusCode
+  def initialize(status_code, body)
+    @status_code = status_code
     @body = body
   end
 
   def resolve
-    { statusCode: @statusCode, body: @body }
+    { status_code: @status_code, body: @body }
   end
 end

@@ -8,12 +8,12 @@ require_relative '../spec_helper'
 
 RSpec.describe 'app' do
   before do
-    @test_event = test_event()
-    @test_email_template = test_email_template()
+    @test_event = test_event
+    @test_email_template = test_email_template
   end
 
   describe 'handler' do
-    let(:s3) { instance_double('S3', get_template: @test_email_template) }
+    let(:s3) { instance_double('S3', template: @test_email_template) }
     let(:ses) { instance_double('Ses', send_email: nil) }
 
     context 'with a valid event' do
@@ -28,7 +28,7 @@ RSpec.describe 'app' do
     end
 
     context 'with an invalid event' do
-      it 'returns a 400 response' do      
+      it 'returns a 400 response' do
         event = @test_event.dup
         event.delete('Records')
 

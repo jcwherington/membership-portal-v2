@@ -6,9 +6,7 @@ class ValidationError < StandardError
     @status = 400
   end
 
-  def status
-    @status
-  end
+  attr_reader :status
 end
 
 class ServiceError < StandardError
@@ -17,7 +15,5 @@ class ServiceError < StandardError
     @status = 500
   end
 
-  def status
-    @status
-  end
+  attr_reader :status
 end

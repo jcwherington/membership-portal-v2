@@ -4,7 +4,7 @@ require 'json'
 
 RSpec.configure do |config|
   config.before(:each) do
-    logger = Logger.new('/dev/null')
+    Logger.new('/dev/null')
 
     allow_any_instance_of(Logger).to receive(:info)
     allow_any_instance_of(Logger).to receive(:debug)

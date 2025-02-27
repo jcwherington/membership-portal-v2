@@ -27,7 +27,7 @@ def handler(event:, context:)
     recipient = message_attributes['Recipient']['Value']
     template_variables = {
         'name' => message_attributes['Name']['Value'],
-        'outcome' => message_attributes['Outcome']['Value']
+        'outcome' => event["Records"][0]["Sns"]["Message"]
     }
 
     begin

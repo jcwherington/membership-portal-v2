@@ -32,6 +32,12 @@ RSpec.describe 'validation' do
         expect { validate_event(event: modified_event) }.to raise_error(ValidationError)
       end
 
+      it 'raises a validation error when Message is invalid' do
+        modified_event['Records'][0]['Sns']['Message'] = 'wrong'
+
+        expect { validate_event(event: modified_event) }.to raise_error(ValidationError)
+      end
+
       it 'raises a validation error when MessageAttributes key is missing' do
         modified_event['Records'][0]['Sns'].delete('MessageAttributes')
 
@@ -62,20 +68,9 @@ RSpec.describe 'validation' do
         expect { validate_message_attributes(message_attributes: modified_message_attributes) }.to raise_error(ValidationError)
       end
 
-      it 'raises a validation error when Outcome key is missing' do
-        modified_message_attributes.delete('Outcome')
-
-        expect { validate_message_attributes(message_attributes: modified_message_attributes) }.to raise_error(ValidationError)
-      end
 
       it 'raises a validation error when Recipient Value key is invalid' do
         modified_message_attributes['Recipient']['Value'] = 'invalid'
-
-        expect { validate_message_attributes(message_attributes: modified_message_attributes) }.to raise_error(ValidationError)
-      end
-
-      it 'raises a validation error when Outcome Value key is invalid' do
-        modified_message_attributes['Outcome']['Value'] = 'invalid'
 
         expect { validate_message_attributes(message_attributes: modified_message_attributes) }.to raise_error(ValidationError)
       end
